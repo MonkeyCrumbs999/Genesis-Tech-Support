@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import HeroImage from "../assets/img/hero.png";
-import { motion, useViewportScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import IconButton from "@mui/material/IconButton";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
 const MotionLink = motion(Link);
 
 function Home() {
-  const [showScroll, setShowScroll] = useState(true);
+  const [showScroll] = useState(true);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -34,7 +34,7 @@ function Home() {
           <MotionLink
             whileHover={{
               scale: 1.2,
-              transition: { duration: 0.1, ease: "linear" },
+              transition: { duration: 0.01, ease: "linear" },
             }}
             className="inline-block py-4 px-8 text-xl bg-genesis-orange text-white font-bold rounded-full transition duration-300 hover:bg-orange-700 drop-shadow-md"
             to="/subscription">
