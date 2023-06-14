@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import HeroImage from "../assets/img/hero.png";
 import { motion } from "framer-motion";
@@ -8,8 +8,6 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 const MotionLink = motion(Link);
 
 function Home() {
-  const [showScroll] = useState(true);
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -51,7 +49,7 @@ function Home() {
               Whether it's one-on-one tech education, or mounting and installing
               your new smart TV, or even troubleshooting your PC & Mac software,
               we've got you covered. We offer a wide range of tech support
-              services with no-committment monthly subscription services with
+              services with no-commitment monthly subscription services with
               full in-home tech support coverage and standalone tech support
               services for our non-members.
             </p>
@@ -99,7 +97,6 @@ function Home() {
           position: "fixed",
           bottom: "10px",
           right: "10px",
-          display: showScroll ? "flex" : "none",
         }}
         color="primary"
         aria-label="scroll to top">

@@ -4,8 +4,6 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import CircularProgress from "@mui/material/CircularProgress";
 
 function ScrollTop() {
-  const [isVisible, setIsVisible] = useState(true);
-
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -21,7 +19,6 @@ function ScrollTop() {
         bottom: "5%",
         right: "5%",
         zIndex: "2000",
-        display: isVisible ? "flex" : "none",
       }}>
       <ArrowUpwardIcon />
     </IconButton>
