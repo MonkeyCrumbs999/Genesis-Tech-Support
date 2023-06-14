@@ -23,18 +23,15 @@ function Home() {
           <p className="text-xl md:text-2xl font-light mb-8 drop-shadow-2xl">
             Your one-stop solution for all your tech needs.
           </p>
-          <motion.div
+          <MotionLink
             whileHover={{
               scale: 1.2,
               transition: { duration: 0.1, ease: "linear" },
             }}
-            className="inline-block py-4 px-8">
-            <Link
-              to="/subscription"
-              className="py-4 px-8 text-xl bg-genesis-orange text-white font-bold rounded-full transition duration-300 hover:bg-orange-700 drop-shadow-md">
-              Subscribe Now
-            </Link>
-          </motion.div>
+            className="inline-block py-4 px-8 text-xl bg-genesis-orange text-white font-bold rounded-full transition duration-300 hover:bg-orange-700 drop-shadow-md"
+            to="/subscription">
+            Subscribe Now
+          </MotionLink>
         </div>
       </section>
 
