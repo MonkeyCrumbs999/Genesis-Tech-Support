@@ -19,7 +19,7 @@ function Home() {
         style={{
           backgroundImage: `url(${HeroImage})`,
         }}>
-        <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl shadow-inner p-6 text-center text-white px-6 border-[1px] border-white drop-shadow-xl backdrop-brightness-75">
+        <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl shadow-inner p-6 text-center text-white px-6 border-[1px] border-white drop-shadow-xl backdrop-brightness-75 ml-4 mr-4">
           <h1 className="text-5xl md:text-6xl mb-6 drop-shadow-md font-aoboshi">
             genesis
           </h1>
