@@ -1,4 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import IconButton from "@mui/material/IconButton";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+
+function ScrollTop() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Show button when page is scrolled up to given distance
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.pageYOffset > 300) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", toggleVisibility);
+
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
+
+  // Scroll to top smooth
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  return (
+    <IconButton
+      onClick={scrollToTop}
+      style={{ position: "fixed", bottom: "5%", right: "5%", zIndex: "1000" }}>
+      <ArrowUpwardIcon />
+    </IconButton>
+  );
+}
 
 function Appointment() {
   return (
@@ -17,6 +54,7 @@ function Appointment() {
         height="800px"
         style={{ border: "none", overflow: "hidden" }}
       />
+      <ScrollTop />
     </div>
   );
 }
