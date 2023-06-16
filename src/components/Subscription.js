@@ -1,8 +1,15 @@
 import React from "react";
+import { MotionMain, fadeIn } from "./animations/sharedAnimations"; // Adjust the path if necessary
+import ScrollTopArrow from "../components/ScrollTopArrow";
 
 function Subscription() {
   return (
-    <div className="p-4">
+    <MotionMain
+      variants={fadeIn}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      className="p-4">
       <h2 className="text-2xl font-bold text-center mb-4">
         Subscription Plans
       </h2>
@@ -34,7 +41,8 @@ function Subscription() {
           </div>
         </div>
       </div>
-    </div>
+      <ScrollTopArrow /> {/* Use the arrow component here */}
+    </MotionMain>
   );
 }
 

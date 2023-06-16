@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         aoboshi: ["Aoboshi One", "sans-serif"],
+        oswald: ["Oswald", "sans-serif"],
       },
       colors: {
         "genesis-orange": "#ff6f3d",

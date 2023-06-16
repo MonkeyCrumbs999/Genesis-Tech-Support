@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import ScrollTopArrow from "../components/ScrollTopArrow";
+import { MotionMain, fadeIn } from "./animations/sharedAnimations"; // Adjust the path if necessary
 
 function ContactUs() {
   const [name, setName] = useState("");
@@ -16,7 +18,11 @@ function ContactUs() {
   };
 
   return (
-    <div className="p-4">
+    <MotionMain
+      variants={fadeIn}
+      initial="hidden"
+      animate="visible"
+      className="p-4">
       <h2 className="text-2xl font-bold text-center mb-4">Contact Us</h2>
       <p className="text-center mb-4">
         We're here to help. Send us a message and we'll get back to you as soon
@@ -58,7 +64,8 @@ function ContactUs() {
           Send Message
         </button>
       </form>
-    </div>
+      <ScrollTopArrow /> {/* Use the new ScrollTopArrow component */}
+    </MotionMain>
   );
 }
 

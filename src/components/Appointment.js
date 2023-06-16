@@ -1,29 +1,7 @@
 import React, { useEffect, useState } from "react";
-import IconButton from "@mui/material/IconButton";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import CircularProgress from "@mui/material/CircularProgress";
-
-function ScrollTop() {
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
-  return (
-    <IconButton
-      onClick={scrollToTop}
-      style={{
-        position: "fixed",
-        bottom: "5%",
-        right: "5%",
-        zIndex: "2000",
-      }}>
-      <ArrowUpwardIcon />
-    </IconButton>
-  );
-}
+import ScrollTopArrow from "../components/ScrollTopArrow";
+import { MotionMain, fadeIn } from "./animations/sharedAnimations"; // Adjust the path if necessary
 
 function Appointment() {
   const [loading, setLoading] = useState(true);
@@ -37,7 +15,11 @@ function Appointment() {
   }, []);
 
   return (
-    <div className="p-4">
+    <MotionMain
+      variants={fadeIn}
+      initial="hidden"
+      animate="visible"
+      className="p-4">
       <h2 className="text-2xl font-bold text-center mb-4">
         Schedule an Appointment
       </h2>
@@ -68,8 +50,8 @@ function Appointment() {
         }}
         onLoad={() => setLoading(false)}
       />
-      <ScrollTop />
-    </div>
+      <ScrollTopArrow /> {/* Use the arrow component here */}
+    </MotionMain>
   );
 }
 
