@@ -2,7 +2,7 @@ import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import HeroImage from "../assets/img/hero.png";
 import ScrollTopArrow from "../components/ScrollTopArrow";
-import { MotionMain, pageTransition } from "./animations/sharedAnimations";
+import { MotionMain } from "./animations/sharedAnimations";
 import { motion } from "framer-motion";
 
 export const fadeIn = {

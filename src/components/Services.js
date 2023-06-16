@@ -1,13 +1,8 @@
 // Services.js
 import React from "react";
-import { motion } from "framer-motion";
 import ScrollTopArrow from "../components/ScrollTopArrow";
 import ServiceCard from "../components/ServiceCard";
-import {
-  fadeIn,
-  MotionMain,
-  pageTransition,
-} from "./animations/sharedAnimations";
+import { fadeIn, MotionMain } from "./animations/sharedAnimations";
 
 function Services() {
   return (
