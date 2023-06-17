@@ -16,7 +16,7 @@ function Home() {
   return (
     <MotionMain variants={fadeIn} initial="hidden" animate="visible">
       <section
-        className="relative flex items-center justify-center bg-center py-20 drop-shadow-md shadow-inset-bottom sm:bg-right"
+        className="relative flex items-center justify-center bg-center pt-32 pb-14 drop-shadow-md shadow-inset-bottom sm:bg-right"
         style={{
           backgroundImage: `url(${HeroImage})`,
         }}>
@@ -40,7 +40,7 @@ function Home() {
           </MotionLink>
         </div>
       </section>
-      <section className="bg-white py-20">
+      <section className="bg-white py-10">
         <div className="container mx-auto px-8">
           <h2 className="text-3xl font-bold text-center mb-8">Our Services</h2>
           <div className="max-w-xl mx-auto">

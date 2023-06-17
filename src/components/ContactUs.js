@@ -22,7 +22,7 @@ function ContactUs() {
       variants={fadeIn}
       initial="hidden"
       animate="visible"
-      className="p-4">
+      className="p-28">
       <h2 className="text-2xl font-bold text-center mb-4">Contact Us</h2>
       <p className="text-center mb-4">
         We're here to help. Send us a message and we'll get back to you as soon

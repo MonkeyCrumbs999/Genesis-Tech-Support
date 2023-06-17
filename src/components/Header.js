@@ -1,18 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/img/genesis-text.png";
 import MobileSidebar from "./MobileSidebar";
 
 function Header({ isOpen, toggleMenu }) {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  const checkScroll = () => {
+    setIsScrolled(window.pageYOffset > 50);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", checkScroll);
+    return () => window.removeEventListener("scroll", checkScroll);
+  }, []);
+
   return (
     <header
-      className="p-4 bg-genesis-blue text-white flex flex-wrap items-center justify-between min-h-24 font-aoboshi"
+      className={`p-4 bg-genesis-blue text-white flex flex-wrap items-center justify-between ${
+        isScrolled ? "min-h-16" : "min-h-24"
+      } font-aoboshi fixed w-full z-50 transition-all duration-300 ease-in-out`}
       style={{
         boxShadow: "inset 0 0 10px rgba(0,0,0,0.3)",
       }}>
       <h1>
         <Link to="/">
-          <img src={Logo} alt="Genesis" className="w-auto h-12 ml-4"></img>
+          <img
+            src={Logo}
+            alt="Genesis"
+            className="w-auto h-8 md:h-12 ml-4 transition-all duration-300 ease-in-out"></img>
         </Link>
       </h1>
       <button id="hamburger-button" onClick={toggleMenu} className="md:hidden">

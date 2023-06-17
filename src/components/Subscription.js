@@ -9,7 +9,7 @@ function Subscription() {
       initial="hidden"
       animate="visible"
       exit="exit"
-      className="p-4">
+      className="p-28">
       <h2 className="text-2xl font-bold text-center mb-4">
         Subscription Plans
       </h2>

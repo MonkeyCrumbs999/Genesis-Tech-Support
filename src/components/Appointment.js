@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import ScrollTopArrow from "../components/ScrollTopArrow";
-import { MotionMain, fadeIn } from "./animations/sharedAnimations"; // Adjust the path if necessary
+import { MotionMain, fadeIn } from "./animations/sharedAnimations";
 
 function Appointment() {
   const [loading, setLoading] = useState(true);
@@ -19,7 +19,9 @@ function Appointment() {
       variants={fadeIn}
       initial="hidden"
       animate="visible"
-      className="p-4">
+      className="p-4 pt-24">
+      {" "}
+      {/* Adjusted padding-top to 24 */}
       <h2 className="text-2xl font-bold text-center mb-4">
         Schedule an Appointment
       </h2>
@@ -28,29 +30,27 @@ function Appointment() {
         appointment. Click 'Sign In' if you already have a Square account.
       </p>
       {loading && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "800px",
-          }}>
+        <div className="flex justify-center items-center h-screen">
           <CircularProgress />
         </div>
       )}
-      <iframe
-        title="Square Appointment"
-        src="https://square.site/appointments/buyer/widget/fih96w2xgu6ntr/LBRYAMQHGS40M"
-        width="100%"
-        height="800px"
-        style={{
-          border: "none",
-          overflow: "hidden",
-          display: loading ? "none" : "block",
-        }}
-        onLoad={() => setLoading(false)}
-      />
-      <ScrollTopArrow /> {/* Use the arrow component here */}
+      <div className="pt-4">
+        {" "}
+        {/* Changed mt-4 to pt-4 */}
+        <iframe
+          title="Square Appointment"
+          src="https://square.site/appointments/buyer/widget/fih96w2xgu6ntr/LBRYAMQHGS40M"
+          width="100%"
+          height="1400px"
+          style={{
+            border: "none",
+            overflow: "hidden",
+            display: loading ? "none" : "block",
+          }}
+          onLoad={() => setLoading(false)}
+        />
+      </div>
+      <ScrollTopArrow />
     </MotionMain>
   );
 }
