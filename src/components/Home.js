@@ -16,7 +16,7 @@ function Home() {
   return (
     <MotionMain variants={fadeIn} initial="hidden" animate="visible">
       <section
-        className="relative flex items-center justify-center bg-center pt-32 pb-14 drop-shadow-md shadow-inset-bottom sm:bg-right"
+        className="relative flex items-center justify-center bg-center pt-32 pb-12 drop-shadow-md shadow-inset-bottom sm:bg-right"
         style={{
           backgroundImage: `url(${HeroImage})`,
         }}>
