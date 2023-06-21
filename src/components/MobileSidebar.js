@@ -57,11 +57,11 @@ function MobileSidebar({ isOpen, toggleMenu }) {
                 Our Services
               </Link>
             </li>
-            <li className="mx-2 my-4">
+            {/* <li className="mx-2 my-4">
               <Link to="/subscription" onClick={toggleMenu}>
                 My Subscription
               </Link>
-            </li>
+            </li> */}
             <li className="mx-2 my-4">
               <Link to="/appointment" onClick={toggleMenu}>
                 Schedule Appointment
@@ -70,6 +70,11 @@ function MobileSidebar({ isOpen, toggleMenu }) {
             <li className="mx-2 my-4">
               <Link to="/contact-us" onClick={toggleMenu}>
                 Contact Us
+              </Link>
+            </li>
+            <li className="mx-2 my-4">
+              <Link to="/login" onClick={toggleMenu}>
+                Login
               </Link>
             </li>
           </ul>

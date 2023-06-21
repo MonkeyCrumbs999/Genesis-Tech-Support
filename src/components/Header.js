@@ -63,14 +63,17 @@ function Header({ isOpen, toggleMenu }) {
           <li className="mx-2 hover:text-genesis-orange transition ease-in-out duration-500">
             <Link to="/services">Our Services</Link>
           </li>
-          <li className="mx-2 hover:text-genesis-orange transition ease-in-out duration-500">
+          {/* <li className="mx-2 hover:text-genesis-orange transition ease-in-out duration-500">
             <Link to="/subscription">My Subscription</Link>
-          </li>
+          </li> this will most likely be removed in final production */}
           <li className="mx-2 hover:text-genesis-orange transition ease-in-out duration-500">
             <Link to="/appointment">Schedule Appointment</Link>
           </li>
           <li className="mx-2 hover:text-genesis-orange transition ease-in-out duration-500">
             <Link to="/contact-us">Contact Us</Link>
+          </li>
+          <li className="mx-2 hover:text-genesis-orange transition ease-in-out duration-500">
+            <Link to="/login">Login</Link>
           </li>
         </ul>
       </nav>

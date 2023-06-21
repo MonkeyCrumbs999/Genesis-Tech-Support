@@ -6,8 +6,11 @@ import Subscription from "./components/Subscription";
 import Appointment from "./components/Appointment";
 import ContactUs from "./components/ContactUs";
 import Services from "./components/Services";
+import Login from "./components/Login"; // Add this import
 import ScrollProgressBar from "./components/ScrollProgressBar";
 import MobileSidebar from "./components/MobileSidebar";
+import Register from "./components/Register";
+import RegistrationSuccess from "./components/RegistrationSuccess";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,6 +43,9 @@ function App() {
         <Route path="/appointment" element={<Appointment />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/registration-success" element={<RegistrationSuccess />} />
       </Routes>
     </Router>
   );
