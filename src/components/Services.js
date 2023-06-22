@@ -1,15 +1,16 @@
 // Services.js
 import React from "react";
-import ScrollTopArrow from "../components/ScrollTopArrow";
 import ServiceCard from "../components/ServiceCard";
 import { fadeIn, MotionMain } from "./animations/sharedAnimations";
 
 function Services() {
   return (
     <MotionMain variants={fadeIn} initial="hidden" animate="visible">
-      <main className="bg-white py-20">
+      <main className="py-20">
         <div className="container mx-auto px-8 py-10">
-          <h1 className="text-4xl font-bold text-center mb-8">Our Services</h1>
+          <h1 className="text-4xl text-center mb-8 font-oswald">
+            Our Services
+          </h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
             <ServiceCard
               title="One-On-One Tech Education"
@@ -33,7 +34,6 @@ function Services() {
             />
           </div>
         </div>
-        <ScrollTopArrow /> {/* Use the new ScrollTopArrow component */}
       </main>
     </MotionMain>
   );

@@ -1,6 +1,5 @@
 import React from "react";
 import { MotionMain, fadeIn } from "./animations/sharedAnimations"; // Adjust the path if necessary
-import ScrollTopArrow from "../components/ScrollTopArrow";
 
 function Subscription() {
   return (
@@ -41,7 +40,6 @@ function Subscription() {
           </div>
         </div>
       </div>
-      <ScrollTopArrow /> {/* Use the arrow component here */}
     </MotionMain>
   );
 }

@@ -11,6 +11,8 @@ import ScrollProgressBar from "./components/ScrollProgressBar";
 import MobileSidebar from "./components/MobileSidebar";
 import Register from "./components/Register";
 import RegistrationSuccess from "./components/RegistrationSuccess";
+import Footer from "./components/Footer";
+import "./App.css";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,6 +49,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/registration-success" element={<RegistrationSuccess />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }
