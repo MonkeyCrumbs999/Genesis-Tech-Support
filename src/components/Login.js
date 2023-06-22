@@ -3,7 +3,6 @@ import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Logo from "../assets/img/genesis-text.png";
 import { MotionMain, fadeIn } from "./animations/sharedAnimations";
-import Footer from "./Footer";
 
 const MotionLink = motion(RouterLink);
 
