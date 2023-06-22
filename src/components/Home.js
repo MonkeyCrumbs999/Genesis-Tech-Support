@@ -3,7 +3,6 @@ import { Link as RouterLink } from "react-router-dom";
 import HeroImage from "../assets/img/hero.png";
 import { MotionMain } from "./animations/sharedAnimations";
 import { motion } from "framer-motion";
-import Footer from "../components/Footer";
 
 export const fadeIn = {
   hidden: { opacity: 0 },
