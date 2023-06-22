@@ -15,7 +15,7 @@ function Appointment() {
 
   return (
     <MotionMain variants={fadeIn} initial="hidden" animate="visible">
-      <main className="py-28 p-4">
+      <main className="pt-28 p-4">
         <h2 className="text-4xl text-center mb-4">Schedule an Appointment</h2>
         <p className="text-center mb-4">
           Use the booking interface provided by Square below to schedule your
@@ -27,8 +27,6 @@ function Appointment() {
           </div>
         )}
         <div className="pt-4">
-          {" "}
-          {/* Changed mt-4 to pt-4 */}
           <iframe
             title="Square Appointment"
             src="https://square.site/appointments/buyer/widget/fih96w2xgu6ntr/LBRYAMQHGS40M"

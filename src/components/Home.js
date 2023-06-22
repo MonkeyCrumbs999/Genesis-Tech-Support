@@ -25,11 +25,12 @@ function Home() {
             <h1 className="text-5xl md:text-6xl mb-6 drop-shadow-md font-aoboshi">
               genesis
             </h1>
-            <h2 className="text-4xl mb-4  drop-shadow-md">
+            <h2 className="text-4xl mb-4 lowercase  drop-shadow-md">
               Tech Install/Support
             </h2>
             <p className="text-xl md:text-2xl font-light mb-8 drop-shadow-2xl">
-              Your one-stop solution for all your tech needs.
+              Your one-stop solution for all your tech needs.<br></br>Servicing
+              Medford, OR.
             </p>
 
             <MotionLink
