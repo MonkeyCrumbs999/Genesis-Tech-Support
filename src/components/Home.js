@@ -28,13 +28,16 @@ function Home() {
             backgroundImage: `url(${HeroImage})`,
           }}>
           <div
-            className={`${bgColorClass} ${bgOpacityClass} backdrop-blur-lg rounded-xl shadow-inner mt-[115px] p-6 text-center text-white px-6 border-[1px] border-white drop-shadow-xl backdrop-brightness-75 ml-4 mr-4`}>
+            className={`${bgColorClass} ${bgOpacityClass} backdrop-blur-lg rounded-xl shadow-inner mt-[115px] p-6 text-center text-white px-6 border-[1px] border-white drop-shadow-xl backdrop-brightness-75 ml-4 mr-4`}
+            id="hero-box">
             <h2
               className="text-5xl md:text-6xl mb-6 drop-shadow-md font-aoboshi"
               id="genesis-h2">
               genesis
             </h2>
-            <h2 className="text-4xl mb-4 lowercase  drop-shadow-md">
+            <h2
+              className="text-4xl mb-4 lowercase  drop-shadow-md"
+              id="tech-install-h2">
               Tech Install/Support
             </h2>
             <p className="text-xl md:text-2xl font-light mb-8 drop-shadow-2xl">

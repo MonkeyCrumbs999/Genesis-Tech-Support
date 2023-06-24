@@ -31,7 +31,13 @@ code {
 
 @media (max-width: 640px) {
   #genesis-h2 {
-    padding-bottom: 0.2em;
+    padding-bottom: 20px;
+  }
+  #hero-box {
+    padding-top: 0 !important;
+  }
+  #tech-install-h2 {
+    margin-top: -20px;
   }
 }
 
