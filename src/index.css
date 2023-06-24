@@ -30,7 +30,7 @@ code {
 }
 
 h1 {
-  line-height: 1.2;
+  line-height: 1.2 !important;
 }
 
 h2,
