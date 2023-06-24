@@ -30,8 +30,7 @@ code {
 }
 
 h1 {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.2;
 }
 
 h2,
