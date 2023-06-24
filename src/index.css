@@ -29,8 +29,10 @@ code {
     monospace;
 }
 
-h1 {
-  line-height: 1.2 !important;
+@media (max-width: 640px) {
+  h1 {
+    line-height: 1.4 !important;
+  }
 }
 
 h2,
