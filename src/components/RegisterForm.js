@@ -75,7 +75,7 @@ function RegisterForm({ onSubmit }) {
           className="block text-sm font-medium leading-5 text-gray-700">
           Username
         </label>
-        <div className="mt-1 relative flex items-center">
+        <div className="mt-1 relative flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0">
           <input
             id="username"
             name="username"
@@ -83,12 +83,12 @@ function RegisterForm({ onSubmit }) {
             required
             value={username.value}
             onChange={(e) => validateInput(e.target.value, "username")}
-            className={`w-full min-w-[400px] block rounded-md border-0 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-genesis-blue sm:text-sm sm:leading-10 ring-1 ring-inset ring-gray-300 ${getInputClass(
+            className={`w-full sm:min-w-[400px] sm:w-auto block rounded-md border-0 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-genesis-blue sm:text-sm sm:leading-10 ring-1 ring-inset ring-gray-300 ${getInputClass(
               username.isValid
             )}`}
           />
           <span
-            className={`ml-3 text-xs ${
+            className={`text-xs ${
               username.isValid === true ? "text-green-500" : "text-red-500"
             }`}>
             {username.message}
@@ -102,7 +102,7 @@ function RegisterForm({ onSubmit }) {
           className="block text-sm font-medium leading-5 text-gray-700">
           Email
         </label>
-        <div className="mt-1 relative flex items-center">
+        <div className="mt-1 relative flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0">
           <input
             id="email"
             name="email"
@@ -110,12 +110,12 @@ function RegisterForm({ onSubmit }) {
             required
             value={email.value}
             onChange={(e) => validateInput(e.target.value, "email")}
-            className={`w-full min-w-[400px] block rounded-md border-0 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-genesis-blue sm:text-sm sm:leading-10 ring-1 ring-inset ring-gray-300 ${getInputClass(
+            className={`w-full sm:min-w-[400px] sm:w-auto block rounded-md border-0 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-genesis-blue sm:text-sm sm:leading-10 ring-1 ring-inset ring-gray-300 ${getInputClass(
               email.isValid
             )}`}
           />
           <span
-            className={`ml-3 text-xs ${
+            className={`text-xs ${
               email.isValid === true ? "text-green-500" : "text-red-500"
             }`}>
             {email.message}
@@ -129,7 +129,7 @@ function RegisterForm({ onSubmit }) {
           className="block text-sm font-medium leading-5 text-gray-700">
           Password
         </label>
-        <div className="mt-1 relative flex items-center">
+        <div className="mt-1 relative flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0">
           <input
             id="password"
             name="password"
@@ -137,12 +137,12 @@ function RegisterForm({ onSubmit }) {
             required
             value={password.value}
             onChange={(e) => validateInput(e.target.value, "password")}
-            className={`w-full min-w-[400px] block rounded-md border-0 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-genesis-blue sm:text-sm sm:leading-10 ring-1 ring-inset ring-gray-300 ${getInputClass(
+            className={`w-full sm:min-w-[400px] sm:w-auto block rounded-md border-0 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-genesis-blue sm:text-sm sm:leading-10 ring-1 ring-inset ring-gray-300 ${getInputClass(
               password.isValid
             )}`}
           />
           <span
-            className={`ml-3 text-xs min-w-[150px] ${
+            className={`text-xs ${
               password.isValid === true ? "text-green-500" : "text-red-500"
             }`}>
             {password.message}
