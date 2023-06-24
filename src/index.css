@@ -31,10 +31,7 @@ code {
 
 @media (max-width: 640px) {
   h1 {
-    line-height: 1.2 !important;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    vertical-align: middle;
+    padding-bottom: 0.2em;
   }
 }
 
