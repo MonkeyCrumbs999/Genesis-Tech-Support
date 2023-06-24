@@ -10,6 +10,7 @@ module.exports = {
       colors: {
         "genesis-orange": "#ff6f3d",
         "genesis-blue": "#3a84b6",
+        "genesis-blue-hover": "#2b6691",
       },
       boxShadow: {
         "inset-bottom": "inset 0 -10px 10px -10px rgba(0, 0, 0, 0.5)",
