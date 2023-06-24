@@ -29,9 +29,11 @@ function Home() {
           }}>
           <div
             className={`${bgColorClass} ${bgOpacityClass} backdrop-blur-lg rounded-xl shadow-inner mt-[115px] p-6 text-center text-white px-6 border-[1px] border-white drop-shadow-xl backdrop-brightness-75 ml-4 mr-4`}>
-            <h1 className="text-5xl md:text-6xl mb-6 drop-shadow-md font-aoboshi">
+            <h2
+              className="text-5xl md:text-6xl mb-6 drop-shadow-md font-aoboshi"
+              id="genesis-h2">
               genesis
-            </h1>
+            </h2>
             <h2 className="text-4xl mb-4 lowercase  drop-shadow-md">
               Tech Install/Support
             </h2>

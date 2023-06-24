@@ -30,7 +30,7 @@ code {
 }
 
 @media (max-width: 640px) {
-  h1 {
+  #genesis-h2 {
     padding-bottom: 0.6em;
   }
 }
