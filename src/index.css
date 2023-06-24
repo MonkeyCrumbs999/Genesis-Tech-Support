@@ -29,6 +29,11 @@ code {
     monospace;
 }
 
+h1 {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 h2,
 h3 {
   @apply font-oswald;

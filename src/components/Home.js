@@ -3,6 +3,7 @@ import { Link as RouterLink } from "react-router-dom";
 import HeroImage from "../assets/img/hero.png";
 import { MotionMain } from "./animations/sharedAnimations";
 import { motion } from "framer-motion";
+import "../App.css";
 
 export const fadeIn = {
   hidden: { opacity: 0 },
@@ -12,15 +13,22 @@ export const fadeIn = {
 const MotionLink = motion(RouterLink);
 
 function Home() {
+  const isFirefox = typeof InstallTrigger !== "undefined";
+  const supportsBackdropFilter = CSS.supports("backdrop-filter", "blur(1px)");
+  const blurClass = supportsBackdropFilter ? "backdrop-blur-lg" : "blur-effect";
+  const bgOpacityClass = isFirefox ? "" : "bg-opacity-10";
+  const bgColorClass = isFirefox ? "bg-genesis-blue" : "bg-white";
+
   return (
     <MotionMain variants={fadeIn} initial="hidden" animate="visible">
       <main>
         <section
-          className="relative flex items-center justify-center bg-center pb-[50px] drop-shadow-md shadow-inset-bottom sm:bg-right h-[450px] md:h-[550px] lg:h-[600px]"
+          className={`relative flex items-center justify-center bg-center pb-[50px] drop-shadow-md shadow-inset-bottom sm:bg-right h-[450px] md:h-[550px] lg:h-[600px] ${blurClass}`}
           style={{
             backgroundImage: `url(${HeroImage})`,
           }}>
-          <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl shadow-inner mt-[115px] p-6 text-center text-white px-6 border-[1px] border-white drop-shadow-xl backdrop-brightness-75 ml-4 mr-4">
+          <div
+            className={`${bgColorClass} ${bgOpacityClass} backdrop-blur-lg rounded-xl shadow-inner mt-[115px] p-6 text-center text-white px-6 border-[1px] border-white drop-shadow-xl backdrop-brightness-75 ml-4 mr-4`}>
             <h1 className="text-5xl md:text-6xl mb-6 drop-shadow-md font-aoboshi">
               genesis
             </h1>
