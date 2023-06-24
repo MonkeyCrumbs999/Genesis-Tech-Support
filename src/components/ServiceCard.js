@@ -6,7 +6,7 @@ export default function ServiceCard({ title, description, link }) {
   return (
     <div className="flex flex-col h-full border-2 border-gray-200 rounded-lg shadow-lg overflow-hidden">
       <div className="flex-1 p-6 sm:p-6">
-        <h2 className="text-4xl font-bold mb-4 font-oswald uppercase p-2 sm:p-0">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-4 font-oswald uppercase">
           {title}
         </h2>
         <p className="text-base text-gray-600">{description}</p>
