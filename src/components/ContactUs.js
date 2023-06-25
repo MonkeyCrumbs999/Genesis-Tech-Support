@@ -57,7 +57,7 @@ function ContactUs() {
           </div>
           <button
             type="submit"
-            className="block w-full bg-blue-500 text-white p-2 rounded-md">
+            className="block w-full bg-genesis-blue text-white p-2 rounded-md">
             Send Message
           </button>
         </form>
