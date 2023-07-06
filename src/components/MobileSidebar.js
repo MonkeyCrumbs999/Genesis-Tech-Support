@@ -1,12 +1,16 @@
 import React, { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 
 function MobileSidebar({ isOpen, toggleMenu }) {
   const sidebar = {
     open: { x: 0 },
     closed: { x: "-100%" },
   };
+
+  const { user } = useContext(AuthContext);
 
   const sidebarRef = useRef(null); // Create a ref to the sidebar
 
@@ -72,10 +76,12 @@ function MobileSidebar({ isOpen, toggleMenu }) {
                 Contact Us
               </Link>
             </li>
-            <li className="mx-2 my-4">
-              <Link to="/login" onClick={toggleMenu}>
-                Login
-              </Link>
+            <li className="mx-2 hover:text-genesis-orange transition ease-in-out duration-500">
+              {user ? (
+                <Link to="/my-account">My Account</Link>
+              ) : (
+                <Link to="/login">Login</Link>
+              )}
             </li>
           </ul>
         </motion.nav>

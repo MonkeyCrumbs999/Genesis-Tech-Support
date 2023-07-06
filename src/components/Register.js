@@ -1,16 +1,48 @@
-import React from "react";
-import { Link as RouterLink } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Logo from "../assets/img/genesis-text.png";
 import { MotionMain, fadeIn } from "./animations/sharedAnimations";
 import RegisterForm from "./RegisterForm";
+import { AuthContext } from "../contexts/AuthContext"; // Import AuthContext
 
 const MotionLink = motion(RouterLink);
 
 function Register() {
+  const navigate = useNavigate();
+
+  // Access register function from context
+  const { register } = useContext(AuthContext);
+
   const handleSubmit = async (formData) => {
-    console.log(formData);
-    // Perform the logic to submit the form data
+    const {
+      username,
+      email,
+      password,
+      firstName,
+      lastName,
+      address,
+      phone,
+      zipCode,
+    } = formData;
+    // Pass credentials to register function from AuthContext
+    const success = await register(
+      username,
+      email,
+      password,
+      firstName,
+      lastName,
+      address,
+      phone,
+      zipCode
+    );
+
+    if (success) {
+      navigate("/my-account");
+    } else {
+      console.error("Registration error");
+      // Handle error during registration, like showing an error message to the user
+    }
   };
 
   return (

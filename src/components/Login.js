@@ -1,37 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Logo from "../assets/img/genesis-text.png";
 import { MotionMain, fadeIn } from "./animations/sharedAnimations";
+import { AuthContext } from "../contexts/AuthContext"; // Import AuthContext
 
 const MotionLink = motion(RouterLink);
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(null);
-  const history = useNavigate();
+  const navigate = useNavigate();
+
+  // Access login function and error from context
+  const { login, error } = useContext(AuthContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    try {
-      const response = await fetch("/users/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
-      });
+    // Pass credentials to login function from AuthContext
+    const success = await login(username, password); //await is important. Don't forget it
 
-      if (response.ok) {
-        setErrorMessage(null);
-        history.push("/dashboard");
-      } else {
-        const { message } = await response.json();
-        setErrorMessage(message);
-      }
-    } catch (error) {
-      console.error(error);
-      setErrorMessage("Something went wrong.");
+    if (success) {
+      navigate("/my-account");
     }
   };
 
@@ -92,8 +83,8 @@ function Login() {
             </div>
 
             <div>
-              {errorMessage && (
-                <div className="text-sm text-red-500 mb-2">{errorMessage}</div>
+              {error && (
+                <div className="text-sm text-red-500 mb-2">{error}</div>
               )}
               <motion.button
                 whileHover={{ scale: 1.05 }}
