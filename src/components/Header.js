@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/img/genesis-text.png";
 import MobileSidebar from "./MobileSidebar";
@@ -11,7 +11,7 @@ function Header({ isOpen, toggleMenu }) {
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
   const [isAccountHovered, setIsAccountHovered] = useState(false);
-  const [timeoutId, setTimeoutId] = useState(null);
+  const timeoutId = useRef(null);
 
   const handleLogout = async () => {
     await logout();
@@ -28,14 +28,14 @@ function Header({ isOpen, toggleMenu }) {
   };
 
   const handleMouseLeave = () => {
-    setTimeoutId(setTimeout(() => setIsAccountHovered(false), 500));
+    timeoutId.current = setTimeout(() => setIsAccountHovered(false), 500); // Update the ref
   };
 
   useEffect(() => {
     window.addEventListener("scroll", checkScroll);
     return () => {
       window.removeEventListener("scroll", checkScroll);
-      if (timeoutId) clearTimeout(timeoutId);
+      if (timeoutId.current) clearTimeout(timeoutId.current); // Clear the timeout using the ref
     };
   }, []);
 
