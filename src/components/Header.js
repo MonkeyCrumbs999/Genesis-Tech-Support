@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/img/genesis-text.png";
 import MobileSidebar from "./MobileSidebar";
@@ -13,9 +13,9 @@ function Header({ isOpen, toggleMenu }) {
   const [isAccountHovered, setIsAccountHovered] = useState(false);
   const timeoutId = useRef(null);
 
-  const checkScroll = () => {
+  const checkScroll = useCallback(() => {
     setIsScrolled(window.pageYOffset > 50);
-  };
+  }, []);
 
   const handleMouseEnter = () => {
     if (timeoutId.current) clearTimeout(timeoutId.current);
