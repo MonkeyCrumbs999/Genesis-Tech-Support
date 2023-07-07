@@ -28,14 +28,14 @@ function Header({ isOpen, toggleMenu }) {
   };
 
   const handleMouseLeave = () => {
-    timeoutId.current = setTimeout(() => setIsAccountHovered(false), 500); // Update the ref
+    timeoutId.current = setTimeout(() => setIsAccountHovered(false), 500);
   };
 
   useEffect(() => {
     window.addEventListener("scroll", checkScroll);
     return () => {
       window.removeEventListener("scroll", checkScroll);
-      if (timeoutId.current) clearTimeout(timeoutId.current); // Clear the timeout using the ref
+      if (timeoutId.current) clearTimeout(timeoutId.current);
     };
   }, []);
 
