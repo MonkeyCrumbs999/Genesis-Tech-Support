@@ -30,10 +30,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser. T
 - Integration with Square Bookings to enable online scheduling of appointments.
 - Development of a backend to handle data processing and storage.
 
-## Contributing
-
-We welcome contributions from the community. Please read our [contributing guidelines](CONTRIBUTING.md) before starting your work.
-
 ## License
 
 This project is licensed under the terms of the MIT license.
