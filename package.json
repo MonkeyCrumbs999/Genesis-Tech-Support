@@ -1,0 +1,12 @@
+{
+  "name": "genesis-tech-support-root",
+  "version": "1.0.0",
+  "description": "Root package.json for Heroku deployment",
+  "scripts": {
+    "start": "npm run start --prefix server",
+    "heroku-postbuild": "npm install --prefix server && npm run build --prefix server"
+  },
+  "engines": {
+    "node": "14.x"
+  }
+}
