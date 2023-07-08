@@ -30,7 +30,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    // Extract the username, email, and password from the request body
+    // Extract the username, email, password from the request body
     const { username, email, password } = req.body;
 
     // Check for existing user
