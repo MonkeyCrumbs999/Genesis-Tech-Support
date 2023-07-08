@@ -2,14 +2,17 @@
 export const login = async (username, password, setUser, setError) => {
   try {
     // Create a POST request to your own server's '/users/login' endpoint
-    const response = await fetch("/users/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json", // The data we're sending is in JSON format
-      },
-      // Include the user's username and password in the body of the request
-      body: JSON.stringify({ username, password }),
-    });
+    const response = await fetch(
+      "https://genesis-tech-support-2159e5e25391.herokuapp.com/users/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", // The data we're sending is in JSON format
+        },
+        // Include the user's username and password in the body of the request
+        body: JSON.stringify({ username, password }),
+      }
+    );
 
     // Wait for the server to respond and convert the JSON response into an object
     const result = await response.json();
@@ -60,23 +63,26 @@ export const register = async (
     });
 
     // Create a POST request to the '/users/register' endpoint of your server
-    const response = await fetch("/users/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json", // The data we're sending is JSON format
-      },
-      // Include the user's registration info in the body of the request
-      body: JSON.stringify({
-        username,
-        email,
-        password,
-        firstName,
-        lastName,
-        address,
-        phone,
-        zipCode,
-      }),
-    });
+    const response = await fetch(
+      "https://genesis-tech-support-2159e5e25391.herokuapp.com/users/register",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", // The data we're sending is JSON format
+        },
+        // Include the user's registration info in the body of the request
+        body: JSON.stringify({
+          username,
+          email,
+          password,
+          firstName,
+          lastName,
+          address,
+          phone,
+          zipCode,
+        }),
+      }
+    );
 
     // Log the response status for debugging
     console.log("Response status:", response.status);

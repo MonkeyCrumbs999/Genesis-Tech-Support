@@ -6,6 +6,8 @@ const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/User");
 const userRouter = require("./routes/users");
 const bcrypt = require("bcryptjs");
+const cors = require("cors");
+
 require("dotenv").config();
 
 const app = express();
@@ -30,6 +32,8 @@ app.use(
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(cors({ origin: "https://thriving-palmier-d79b26.netlify.app" }));
 
 // Passport middleware
 app.use(passport.initialize());
