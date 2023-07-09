@@ -1,12 +1,11 @@
 export const login = async (username, password, setUser, setError) => {
   try {
     const response = await fetch(
-      "https://genesis-tech-support-2159e5e25391.herokuapp.com/login", // Changed path
+      "https://genesis-tech-support-2159e5e25391.herokuapp.com/login",
       {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
+        credentials: "include", // Include credentials
         body: JSON.stringify({ username, password }),
       }
     );
@@ -17,10 +16,8 @@ export const login = async (username, password, setUser, setError) => {
     }
 
     const result = await response.json();
-
     setUser(result.user);
     localStorage.setItem("user", JSON.stringify(result.user));
-
     return true;
   } catch (error) {
     setError("Error signing in");
@@ -43,12 +40,11 @@ export const register = async (
 ) => {
   try {
     const response = await fetch(
-      "https://genesis-tech-support-2159e5e25391.herokuapp.com/register", // Changed path
+      "https://genesis-tech-support-2159e5e25391.herokuapp.com/register",
       {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
+        credentials: "include", // Include credentials
         body: JSON.stringify({
           username,
           email,
@@ -69,7 +65,6 @@ export const register = async (
     }
 
     const result = await response.json();
-
     setUser(result.user);
     localStorage.setItem("user", JSON.stringify(result.user));
     return true;

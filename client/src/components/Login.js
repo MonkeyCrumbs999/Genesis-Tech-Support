@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Logo from "../assets/img/genesis-text.png";
 import { MotionMain, fadeIn } from "./animations/sharedAnimations";
 import { AuthContext } from "../contexts/AuthContext";
+import Error from "./login-errors/Error"; // Import the Error component
 
 const MotionLink = motion(RouterLink);
 
@@ -11,7 +12,7 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const { error } = useContext(AuthContext); // Fetch error from authContext
+  const { error } = useContext(AuthContext);
 
   const authContext = useContext(AuthContext);
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ function Login() {
             src={Logo}
             alt="Genesis Tech Support/Install"
           />
-          <h2 className="mt-10 text-center text-2xl  leading-9 tracking-tight text-gray-900">
+          <h2 className="mt-10 text-center text-2xl leading-9 tracking-tight text-gray-900">
             Sign in to your account
           </h2>
         </div>
@@ -84,9 +85,7 @@ function Login() {
             </div>
 
             <div>
-              {error && (
-                <div className="text-sm text-red-500 mb-2">{error}</div>
-              )}
+              {error && <Error message={error} />}
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.1 }}

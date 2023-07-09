@@ -30,7 +30,10 @@ app.use(
 
 app.use(
   cors({
-    origin: "https://thriving-palmier-d79b26.netlify.app", // replace with your actual front-end URL
+    origin: [
+      "https://thriving-palmier-d79b26.netlify.app",
+      "http://localhost:3000",
+    ],
     credentials: true,
   })
 );
