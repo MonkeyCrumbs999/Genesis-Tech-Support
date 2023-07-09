@@ -1,10 +1,9 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 export default function TVMounting() {
-  const history = useHistory();
-  const handleGoBack = () => history.goBack();
+  const navigate = useNavigate();
 
   return (
     <motion.div
@@ -13,7 +12,7 @@ export default function TVMounting() {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}>
       <motion.button
-        onClick={handleGoBack}
+        onClick={() => navigate(-1)}
         className="mb-4 px-3 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 transition-colors"
         initial={{ x: -20 }}
         animate={{ x: 0 }}
