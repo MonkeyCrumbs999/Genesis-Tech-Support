@@ -1,28 +1,19 @@
-// User Model
-// Import mongoose and bcryptjs
 const mongoose = require("mongoose");
+const passportLocalMongoose = require("passport-local-mongoose");
 
-// Define the User schema
 const UserSchema = new mongoose.Schema({
-  // Each user will have a unique username which is required
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  // Each user will have a password which is required
-  password: {
-    type: String,
-    required: true,
-  },
-  // Each user will have a unique email which is required
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
+  username: { type: String, unique: true, required: true },
+  password: { type: String, required: true },
+  name: String,
+  email: { type: String, unique: true, required: true },
+  phone: String,
+  address: String,
+  zipcode: String,
+  city: String,
+  state: String,
+  country: String,
 });
 
-// Create the User model based on the schema and export it
-const User = mongoose.model("User", UserSchema);
-module.exports = User;
+UserSchema.plugin(passportLocalMongoose);
+
+module.exports = mongoose.model("User", UserSchema);

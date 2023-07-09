@@ -3,25 +3,26 @@ import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Logo from "../assets/img/genesis-text.png";
 import { MotionMain, fadeIn } from "./animations/sharedAnimations";
-import { AuthContext } from "../contexts/AuthContext"; // Import AuthContext
+import { AuthContext } from "../contexts/AuthContext";
 
 const MotionLink = motion(RouterLink);
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
-  // Access login function and error from context
-  const { login, error } = useContext(AuthContext);
+  const { login, error } = useContext(AuthContext); // Fetch error from authContext
+
+  const authContext = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Pass credentials to login function from AuthContext
-    const success = await login(username, password); //await is important. Don't forget it
-
-    if (success) {
+    await authContext.login(username, password);
+    if (authContext.error) {
+      // handle the error from authContext
+    } else {
       navigate("/my-account");
     }
   };
