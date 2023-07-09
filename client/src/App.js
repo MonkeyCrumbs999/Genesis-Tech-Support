@@ -30,7 +30,7 @@ function ScrollToTop() {
   return null;
 }
 
-function App() {
+export default function App() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
