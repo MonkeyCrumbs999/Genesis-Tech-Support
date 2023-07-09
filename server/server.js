@@ -87,7 +87,7 @@ app.post("/register", (req, res) => {
 
 // Login route
 app.post(
-  "/users/login", // changed route path
+  "/login", // changed route path
   (req, res, next) => {
     const { error } = loginSchema.validate(req.body);
     if (error) {
