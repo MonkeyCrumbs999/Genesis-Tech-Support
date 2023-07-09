@@ -5,7 +5,6 @@ const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/User");
 const Joi = require("joi");
 const cors = require("cors");
-const bcrypt = require("bcrypt");
 
 require("dotenv").config();
 
@@ -60,13 +59,6 @@ const loginSchema = Joi.object({
   password: Joi.string().min(3).max(30).required(),
 });
 
-// Hash password using bcrypt
-const hashPassword = async (password) => {
-  const saltRounds = 10;
-  const hashedPassword = await bcrypt.hash(password, saltRounds);
-  return hashedPassword;
-};
-
 app.post("/register", async (req, res) => {
   const { error } = registerSchema.validate(req.body);
   if (error) {
@@ -74,12 +66,10 @@ app.post("/register", async (req, res) => {
   }
 
   try {
-    const hashedPassword = await hashPassword(req.body.password);
-
     const newUser = new User({
       username: req.body.username,
       email: req.body.email,
-      password: hashedPassword,
+      password: req.body.password,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       address: req.body.address,
@@ -87,12 +77,16 @@ app.post("/register", async (req, res) => {
       zipCode: req.body.zipCode,
     });
 
-    await newUser.save();
-
-    passport.authenticate("local")(req, res, function () {
-      res
-        .status(200)
-        .json({ user: { username: newUser.username, email: newUser.email } });
+    User.register(newUser, req.body.password, (err, user) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send("Error registering");
+      }
+      passport.authenticate("local")(req, res, () => {
+        res
+          .status(200)
+          .json({ user: { username: user.username, email: user.email } });
+      });
     });
   } catch (error) {
     console.error(error);
