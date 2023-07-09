@@ -5,7 +5,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/User");
 const Joi = require("joi");
 const cors = require("cors");
-const bcrypt = require("bcrypt"); // Import bcrypt for password hashing
+const bcrypt = require("bcrypt");
 
 require("dotenv").config();
 
@@ -29,15 +29,7 @@ app.use(
   })
 );
 
-app.use(
-  cors({
-    origin: [
-      "https://thriving-palmier-d79b26.netlify.app",
-      "http://localhost:3000",
-    ],
-    credentials: true,
-  })
-);
+app.use(cors());
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -75,9 +67,6 @@ const hashPassword = async (password) => {
   return hashedPassword;
 };
 
-// your other routes here...
-
-// Register route
 app.post("/register", async (req, res) => {
   const { error } = registerSchema.validate(req.body);
   if (error) {
@@ -111,7 +100,6 @@ app.post("/register", async (req, res) => {
   }
 });
 
-// Login route
 app.post(
   "/login",
   (req, res, next) => {
@@ -129,7 +117,6 @@ app.post(
   }
 );
 
-// Logout route
 app.get("/logout", (req, res) => {
   req.logout();
   res.status(200).send("Successfully Logged Out!");

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt"); // Import bcrypt for password hashing
+const bcrypt = require("bcrypt");
 
 const UserSchema = new mongoose.Schema({
   username: { type: String, unique: true, required: true },
@@ -14,15 +14,14 @@ const UserSchema = new mongoose.Schema({
   country: String,
 });
 
-// Hash password before saving to the database
 UserSchema.pre("save", async function (next) {
   try {
-    if (!this.isModified("password")) return next();
-
-    const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(this.password, saltRounds);
-    this.password = hashedPassword;
-
+    // Only hash the password if it has been modified
+    if (this.isModified("password")) {
+      const saltRounds = 10;
+      const hash = await bcrypt.hash(this.password, saltRounds);
+      this.password = hash;
+    }
     return next();
   } catch (error) {
     return next(error);
