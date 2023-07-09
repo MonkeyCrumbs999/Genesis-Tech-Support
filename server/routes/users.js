@@ -43,7 +43,7 @@ router.post(
       newUser.password = hash;
 
       user = await newUser.save();
-      res.send("User added");
+      res.json({ message: "User added" });
     } catch (err) {
       res.send("Error: " + err);
     }
