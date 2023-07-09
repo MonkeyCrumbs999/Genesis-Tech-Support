@@ -15,7 +15,7 @@ const limiter = rateLimit({
   max: 100, // limit each IP to 100 requests per windowMs
 });
 
-// The register route (POST request to /users/register)
+// The register route(POST request to /users/register)
 router.post(
   "/register",
   [
