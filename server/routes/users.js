@@ -54,20 +54,23 @@ router.post(
   }
 );
 
-// The login route (POST request to /users/login)
 router.post("/login", limiter, (req, res, next) => {
   // Use passport to authenticate the user
   passport.authenticate("local", (err, user, info) => {
-    // If there's an error, send the error
-    if (err) throw err;
+    // If there's an error, send the actual error message
+    if (err) return res.status(500).json({ error: err.message });
 
-    // If the user doesn't exist, send a message
-    if (!user) res.send("No User Exists");
+    // If the user doesn't exist, send a more descriptive message
+    if (!user)
+      return res.status(400).json({
+        error:
+          "Failed to login. The supplied username does not match any account.",
+      });
     // If the user exists, try to log them in
     else {
       req.logIn(user, async (err) => {
-        // If there's an error, send the error
-        if (err) throw err;
+        // If there's an error, send the error message
+        if (err) return res.status(500).json({ error: err.message });
 
         // Check password
         const validPass = await bcrypt.compare(
@@ -75,14 +78,14 @@ router.post("/login", limiter, (req, res, next) => {
           user.password
         );
 
-        // Log the result of password comparison
-        console.log(`Password comparison result: ${validPass}`);
+        if (!validPass) {
+          return res.status(401).json({
+            error: "Failed to login. The password you've entered is incorrect.",
+          });
+        }
 
         // If successful, send a success message
         res.send("Successfully Authenticated");
-
-        // Optionally, you can also send the user data
-        // res.send(user);
       });
     }
   })(req, res, next);

@@ -14,8 +14,12 @@ export const AuthProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   const loginCallback = async (username, password) => {
-    const result = await login(username, password, setUser, setError);
-    if (result) {
+    const result = await login(username, password);
+
+    // If there's an error, set it in state
+    if (result.error) {
+      setError(result.error);
+    } else {
       setUser(result);
     }
   };
