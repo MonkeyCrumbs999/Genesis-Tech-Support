@@ -17,6 +17,7 @@ import MobileSidebar from "./components/MobileSidebar";
 import Register from "./components/Register";
 import MyAccount from "./components/MyAccount";
 import Footer from "./components/Footer";
+import TVMounting from "./components/services/TVMounting";
 import { AuthProvider } from "./contexts/AuthContext";
 import "./App.css";
 
@@ -61,6 +62,7 @@ export default function App() {
           <Route path="/appointment" element={<Appointment />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/services/tv-mounting" element={<TVMounting />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/my-account" element={<MyAccount />} />
