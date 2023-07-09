@@ -88,9 +88,9 @@ app.post(
     if (error) {
       return res.status(400).send(error.details[0].message);
     }
-
-    passport.authenticate("local")(req, res, next);
+    next();
   },
+  passport.authenticate("local", { failureRedirect: "/login-failure" }), // Modify this line.
   (req, res) => {
     res
       .status(200)
