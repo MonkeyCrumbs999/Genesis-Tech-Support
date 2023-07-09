@@ -56,7 +56,7 @@ const registerSchema = Joi.object({
   lastName: Joi.string().min(1).max(30).required(),
   address: Joi.string().min(1).max(100).required(),
   zipCode: Joi.string().min(5).max(9).required(),
-  phoneNumber: Joi.string()
+  phone: Joi.string()
     .length(10)
     .pattern(/^[0-9]+$/)
     .required(),
