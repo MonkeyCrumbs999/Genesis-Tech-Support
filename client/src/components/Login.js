@@ -11,7 +11,7 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const { login, error } = useContext(AuthContext); // Fetch error from authContext
+  const { error } = useContext(AuthContext); // Fetch error from authContext
 
   const authContext = useContext(AuthContext);
   const navigate = useNavigate();
