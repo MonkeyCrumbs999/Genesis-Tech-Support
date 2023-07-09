@@ -7,6 +7,7 @@ const User = require("./models/User");
 const userRouter = require("./routes/users");
 const bcrypt = require("bcryptjs");
 const cors = require("cors");
+const MongoStore = require("connect-mongo");
 
 require("dotenv").config();
 
@@ -27,6 +28,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({ mongooseConnection: mongoose.connection }),
   })
 );
 
