@@ -4,6 +4,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/User");
 const Joi = require("joi");
+const cors = require("cors");
 
 require("dotenv").config();
 
@@ -19,6 +20,13 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+  })
+);
+
+app.use(
+  cors({
+    origin: "https://thriving-palmier-d79b26.netlify.app", // replace with your actual front-end URL
+    credentials: true,
   })
 );
 
@@ -64,7 +72,9 @@ app.post("/register", (req, res) => {
       }
 
       passport.authenticate("local")(req, res, function () {
-        res.status(200).send("Successfully Registered!");
+        res
+          .status(200)
+          .json({ user: { username: user.username, email: user.email } });
       });
     }
   );
@@ -82,7 +92,9 @@ app.post(
     passport.authenticate("local")(req, res, next);
   },
   (req, res) => {
-    res.status(200).send("Successfully Logged In!");
+    res
+      .status(200)
+      .json({ user: { username: req.user.username, email: req.user.email } });
   }
 );
 
