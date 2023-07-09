@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import Header from "./components/Header";
-import Home from "./components/Home";
 import MobileSidebar from "./components/MobileSidebar";
 import ScrollProgressBar from "./components/ScrollProgressBar";
 import { AuthProvider } from "./contexts/AuthContext";
