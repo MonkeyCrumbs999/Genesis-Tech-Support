@@ -46,20 +46,27 @@ passport.use(
       let user = await User.findOne({ username: username });
       if (!user) {
         console.log("User not found"); // Log if the user is not found
-        throw new Error("No user exists");
+        return done(null, false, { message: "Incorrect username." });
       }
 
-      let isMatch = await bcrypt.compare(password, user.password);
+      let isMatch = false;
+      try {
+        isMatch = await bcrypt.compare(password, user.password);
+      } catch (err) {
+        console.log("Error comparing passwords:", err); // Log if an error occurred during password comparison
+        return done(err);
+      }
+
       if (isMatch) {
         console.log("User found and password matched"); // Log if the user is found and password matches
         return done(null, user);
       } else {
         console.log("Password did not match"); // Log if the password did not match
-        throw new Error("Incorrect password");
+        return done(null, false, { message: "Incorrect password." });
       }
     } catch (err) {
       console.log("Error occurred:", err); // Log if an error occurred
-      done(err);
+      return done(err);
     }
   })
 );
