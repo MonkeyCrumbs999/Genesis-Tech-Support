@@ -17,15 +17,9 @@ export const login = async (username, password, setUser, setError) => {
     // Wait for the server to respond and convert the JSON response into an object
     const result = await response.json();
 
-    // If result.message exists, set it as the error message
-    if (result.message) {
+    // If result.user does not exist, set the error message to result.message
+    if (!result.user) {
       setError(result.message);
-      return false; // Login unsuccessful
-    }
-
-    // If response is not OK and result.message does not exist, set a generic error message
-    if (!response.ok) {
-      setError("Error signing in");
       return false; // Login unsuccessful
     }
 
