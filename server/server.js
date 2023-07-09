@@ -28,7 +28,9 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({ mongooseConnection: mongoose.connection }),
+    store: MongoStore.create({
+      clientPromise: mongoose.connection.getClient(),
+    }),
   })
 );
 
