@@ -15,6 +15,11 @@ mongoose.connect(process.env.MONGODB_URI, {
   useUnifiedTopology: true,
 });
 
+app.use((req, res, next) => {
+  console.log(`Received a ${req.method} request to ${req.path}`);
+  next();
+});
+
 app.use(
   require("express-session")({
     secret: process.env.SESSION_SECRET,
