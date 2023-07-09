@@ -28,8 +28,12 @@ app.use(
   })
 );
 
-app.use(cors());
-
+app.use(
+  cors({
+    origin: "https://thriving-palmier-d79b26.netlify.app", // or specific URIs where requests are allowed from
+    credentials: true,
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 
