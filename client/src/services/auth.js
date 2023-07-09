@@ -1,7 +1,7 @@
 export const login = async (username, password, setUser, setError) => {
   try {
     const response = await fetch(
-      "https://genesis-tech-support-2159e5e25391.herokuapp.com/users/login",
+      "https://genesis-tech-support-2159e5e25391.herokuapp.com/login", // Changed path
       {
         method: "POST",
         headers: {
@@ -11,28 +11,23 @@ export const login = async (username, password, setUser, setError) => {
       }
     );
 
+    if (!response.ok) {
+      setError("Error signing in");
+      return false;
+    }
+
     const result = await response.json();
 
-    if (result) {
-      if (typeof setError === "function") {
-        if (!result.user) {
-          setError(result.message);
-        }
-      }
+    setUser(result.user);
+    localStorage.setItem("user", JSON.stringify(result.user));
 
-      if (typeof setUser === "function") {
-        setUser(result.user);
-      }
-      localStorage.setItem("user", JSON.stringify(result.user));
-    }
     return true;
   } catch (error) {
-    if (typeof setError === "function") {
-      setError("Error signing in");
-    }
+    setError("Error signing in");
     return false;
   }
 };
+
 // Function to handle register requests
 export const register = async (
   username,
@@ -47,19 +42,8 @@ export const register = async (
   setError
 ) => {
   try {
-    console.log({
-      username,
-      email,
-      password,
-      firstName,
-      lastName,
-      address,
-      phone,
-      zipCode,
-    });
-
     const response = await fetch(
-      "https://genesis-tech-support-2159e5e25391.herokuapp.com/users/register",
+      "https://genesis-tech-support-2159e5e25391.herokuapp.com/register", // Changed path
       {
         method: "POST",
         headers: {
@@ -78,22 +62,18 @@ export const register = async (
       }
     );
 
-    console.log("Response status:", response.status);
-    const result = await response.json();
-
-    console.log("Response data:", result);
-
     if (!response.ok) {
+      const result = await response.json();
       setError(result.message);
-      console.error(result.message);
       return false;
     }
+
+    const result = await response.json();
 
     setUser(result.user);
     localStorage.setItem("user", JSON.stringify(result.user));
     return true;
   } catch (error) {
-    console.error("Error registering:", error);
     setError("Error registering");
     return false;
   }
