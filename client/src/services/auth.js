@@ -114,7 +114,7 @@ export const register = async (
 export const logout = async (setUser) => {
   // Call your API to invalidate the user session here, if needed
 
-  // Update the current user in your React component state to null (indicating no user is logged in)
+  // Update the current user in your React component-state to null (indicating no user is logged in)
   setUser(null);
   // Remove the user info from the browser's localStorage
   localStorage.removeItem("user");
