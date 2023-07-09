@@ -40,30 +40,34 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(
-  new LocalStrategy((username, password, done) => {
-    User.findOne({ username: username }, (err, user) => {
-      if (err) throw err;
+  new LocalStrategy(async (username, password, done) => {
+    try {
+      let user = await User.findOne({ username: username });
       if (!user) return done(null, false, { message: "Incorrect username." });
 
-      bcrypt.compare(password, user.password, (err, result) => {
-        if (err) throw err;
-        if (result === true) {
-          return done(null, user);
-        } else {
-          return done(null, false, { message: "Incorrect password." });
-        }
-      });
-    });
+      let isMatch = await bcrypt.compare(password, user.password);
+      if (isMatch) {
+        return done(null, user);
+      } else {
+        return done(null, false, { message: "Incorrect password." });
+      }
+    } catch (err) {
+      throw err;
+    }
   })
 );
 
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
 });
-passport.deserializeUser((id, cb) => {
-  User.findOne({ _id: id }, (err, user) => {
-    cb(err, user);
-  });
+
+passport.deserializeUser(async (id, cb) => {
+  try {
+    let user = await User.findOne({ _id: id });
+    cb(null, user);
+  } catch (err) {
+    cb(err, null);
+  }
 });
 
 app.use("/users", userRouter);

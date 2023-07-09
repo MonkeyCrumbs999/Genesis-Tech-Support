@@ -24,42 +24,29 @@ router.post(
     body("password").isLength({ min: 5 }),
   ],
   limiter,
-  (req, res) => {
+  async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    // Extract the username, email, password from the request body
     const { username, email, password } = req.body;
 
-    // Check for existing user
-    User.findOne({ username: username }).then((user) => {
+    try {
+      let user = await User.findOne({ username: username });
       if (user) return res.status(400).json({ msg: "User already exists" });
 
-      // Create a new user
-      let newUser = new User({
-        username: username,
-        email: email,
-        password: password,
-      });
+      let newUser = new User({ username, email, password });
 
-      // Create salt & hash
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
-          newUser.password = hash;
-          newUser
-            .save()
-            .then((user) => {
-              res.send("User added");
-            })
-            .catch((err) => {
-              res.send("Error: " + err);
-            });
-        });
-      });
-    });
+      const salt = await bcrypt.genSalt(10);
+      const hash = await bcrypt.hash(newUser.password, salt);
+      newUser.password = hash;
+
+      user = await newUser.save();
+      res.send("User added");
+    } catch (err) {
+      res.send("Error: " + err);
+    }
   }
 );
 
