@@ -40,6 +40,10 @@ router.post(
 
       const salt = await bcrypt.genSalt(10);
       const hash = await bcrypt.hash(newUser.password, salt);
+
+      // Log the hashed password
+      console.log(`Hashed password: ${hash}`);
+
       newUser.password = hash;
 
       user = await newUser.save();
@@ -61,9 +65,18 @@ router.post("/login", limiter, (req, res, next) => {
     if (!user) res.send("No User Exists");
     // If the user exists, try to log them in
     else {
-      req.logIn(user, (err) => {
+      req.logIn(user, async (err) => {
         // If there's an error, send the error
         if (err) throw err;
+
+        // Check password
+        const validPass = await bcrypt.compare(
+          req.body.password,
+          user.password
+        );
+
+        // Log the result of password comparison
+        console.log(`Password comparison result: ${validPass}`);
 
         // If successful, send a success message
         res.send("Successfully Authenticated");
