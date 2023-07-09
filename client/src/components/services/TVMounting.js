@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 export default function TVMounting() {
@@ -7,7 +7,7 @@ export default function TVMounting() {
 
   return (
     <motion.div
-      className="flex flex-col items-start h-full border-2 border-gray-200 rounded-lg shadow-lg overflow-hidden py-20 container mx-auto px-8 py-10"
+      className="flex flex-col items-start border-2 border-gray-200 rounded-lg shadow-lg overflow-hidden py-8 container mx-auto px-4"
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}>
@@ -29,7 +29,7 @@ export default function TVMounting() {
       </motion.h2>
 
       <motion.p
-        className="text-base text-gray-600 mb-4"
+        className="text-base text-gray-600"
         initial={{ y: 20 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.4 }}>
@@ -38,12 +38,6 @@ export default function TVMounting() {
         the stress out of the process. We'll also guide you through its features
         and make sure you're comfortable using it before we leave.
       </motion.p>
-
-      <Link
-        to="/services/tv-mounting"
-        className="inline-block w-full bg-genesis-blue text-white text-center px-4 py-2 rounded transition-colors duration-800 ease-in-out hover:bg-genesis-blue-hover">
-        Explore
-      </Link>
     </motion.div>
   );
 }
