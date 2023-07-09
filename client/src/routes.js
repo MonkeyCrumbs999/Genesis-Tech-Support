@@ -1,5 +1,6 @@
 // routes.js
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+
 import Home from "./components/Home";
 import Subscription from "./components/Subscription";
 import Appointment from "./components/Appointment";
