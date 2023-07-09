@@ -25,6 +25,9 @@ function Register() {
       phone,
       zipCode,
     } = formData;
+
+    console.log("Submitting registration form with data:", formData);
+
     // Pass credentials to register function from AuthContext
     const success = await register(
       username,
@@ -37,7 +40,10 @@ function Register() {
       zipCode
     );
 
+    console.log("Registration result:", success);
+
     if (success) {
+      console.log("Registration successful, navigating to /my-account");
       navigate("/my-account");
     } else {
       console.error("Registration error");

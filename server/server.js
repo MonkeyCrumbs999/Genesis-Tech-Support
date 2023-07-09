@@ -46,7 +46,7 @@ passport.use(
       let user = await User.findOne({ username: username });
       if (!user) {
         console.log("User not found"); // Log if the user is not found
-        return done(null, false, { message: "Incorrect username." });
+        throw new Error("No user exists");
       }
 
       let isMatch = await bcrypt.compare(password, user.password);
@@ -55,11 +55,11 @@ passport.use(
         return done(null, user);
       } else {
         console.log("Password did not match"); // Log if the password did not match
-        return done(null, false, { message: "Incorrect password." });
+        throw new Error("Incorrect password");
       }
     } catch (err) {
       console.log("Error occurred:", err); // Log if an error occurred
-      throw err;
+      done(err);
     }
   })
 );
@@ -82,6 +82,12 @@ app.use("/users", userRouter);
 // Add a route handler for the root path
 app.get("/", (req, res) => {
   res.send("Hello, world!");
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.message); // Log the error message
+  res.status(401).json({ message: err.message });
 });
 
 const PORT = process.env.PORT || 5000;
