@@ -15,7 +15,10 @@ export const AuthProvider = ({ children }) => {
   // it retrieves user data from local storage, if any, during initial load (refresh or first load)
   const [user, setUser] = useState(() => {
     const localUser = localStorage.getItem("user");
-    return localUser ? JSON.parse(localUser) : null; // if localUser exists, parse it to JSON or return null
+    // check if localUser is not "undefined"
+    return localUser && localUser !== "undefined"
+      ? JSON.parse(localUser)
+      : null;
   });
 
   // error state to handle any auth-related errors
