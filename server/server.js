@@ -82,7 +82,7 @@ app.post("/register", (req, res) => {
 
 // Login route
 app.post(
-  "/login",
+  "/users/login", // changed route path
   (req, res, next) => {
     const { error } = loginSchema.validate(req.body);
     if (error) {
@@ -90,7 +90,7 @@ app.post(
     }
     next();
   },
-  passport.authenticate("local", { failureRedirect: "/login-failure" }), // Modify this line.
+  passport.authenticate("local"), // removed failureRedirect
   (req, res) => {
     res
       .status(200)
