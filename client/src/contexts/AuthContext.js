@@ -14,13 +14,11 @@ export const AuthProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   const loginCallback = async (username, password) => {
-    const result = await login(username, password);
+    const result = await login(username, password, setUser, setError);
 
-    // If there's an error, set it in state
-    if (result.error) {
-      setError(result.error);
-    } else {
-      setUser(result);
+    if (result === false) {
+      //you will handle error visibility in component
+      //setError is already invoked in login service
     }
   };
 
@@ -46,8 +44,9 @@ export const AuthProvider = ({ children }) => {
       setUser,
       setError
     );
-    if (result) {
-      setUser(result);
+    if (result === false) {
+      //you will handle error visibility in component
+      //setError is already invoked in register service
     }
   };
 
@@ -69,5 +68,3 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-
-export default AuthProvider;

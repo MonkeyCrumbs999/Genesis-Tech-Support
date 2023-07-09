@@ -1,7 +1,5 @@
-// Function to handle login requests
 export const login = async (username, password, setUser, setError) => {
   try {
-    // Create a POST request to your own server's '/users/login' endpoint
     const response = await fetch(
       "https://genesis-tech-support-2159e5e25391.herokuapp.com/users/login",
       {
@@ -15,20 +13,26 @@ export const login = async (username, password, setUser, setError) => {
 
     const result = await response.json();
 
-    if (!result.user) {
-      setError(result.message);
-      return false;
-    }
+    if (result) {
+      if (typeof setError === "function") {
+        if (!result.user) {
+          setError(result.message);
+        }
+      }
 
-    setUser(result.user);
-    localStorage.setItem("user", JSON.stringify(result.user));
+      if (typeof setUser === "function") {
+        setUser(result.user);
+      }
+      localStorage.setItem("user", JSON.stringify(result.user));
+    }
     return true;
   } catch (error) {
-    setError("Error signing in");
+    if (typeof setError === "function") {
+      setError("Error signing in");
+    }
     return false;
   }
 };
-
 // Function to handle register requests
 export const register = async (
   username,
