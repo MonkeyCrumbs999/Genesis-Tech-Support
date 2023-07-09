@@ -5,6 +5,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/User");
 const Joi = require("joi");
 const cors = require("cors");
+const bcrypt = require("bcrypt"); // Import bcrypt for password hashing
 
 require("dotenv").config();
 
@@ -67,35 +68,52 @@ const loginSchema = Joi.object({
   password: Joi.string().min(3).max(30).required(),
 });
 
+// Hash password using bcrypt
+const hashPassword = async (password) => {
+  const saltRounds = 10;
+  const hashedPassword = await bcrypt.hash(password, saltRounds);
+  return hashedPassword;
+};
+
 // your other routes here...
 
 // Register route
-app.post("/register", (req, res) => {
+app.post("/register", async (req, res) => {
   const { error } = registerSchema.validate(req.body);
   if (error) {
     return res.status(400).send(error.details[0].message);
   }
 
-  User.register(
-    new User({ username: req.body.username, email: req.body.email }),
-    req.body.password,
-    (err, user) => {
-      if (err) {
-        return res.status(500).send(err);
-      }
+  try {
+    const hashedPassword = await hashPassword(req.body.password);
 
-      passport.authenticate("local")(req, res, function () {
-        res
-          .status(200)
-          .json({ user: { username: user.username, email: user.email } });
-      });
-    }
-  );
+    const newUser = new User({
+      username: req.body.username,
+      email: req.body.email,
+      password: hashedPassword,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      address: req.body.address,
+      phone: req.body.phone,
+      zipCode: req.body.zipCode,
+    });
+
+    await newUser.save();
+
+    passport.authenticate("local")(req, res, function () {
+      res
+        .status(200)
+        .json({ user: { username: newUser.username, email: newUser.email } });
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error registering");
+  }
 });
 
 // Login route
 app.post(
-  "/login", // changed route path
+  "/login",
   (req, res, next) => {
     const { error } = loginSchema.validate(req.body);
     if (error) {
@@ -103,7 +121,7 @@ app.post(
     }
     next();
   },
-  passport.authenticate("local"), // removed failureRedirect
+  passport.authenticate("local"),
   (req, res) => {
     res
       .status(200)
