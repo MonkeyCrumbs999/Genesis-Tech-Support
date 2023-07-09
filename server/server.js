@@ -42,16 +42,23 @@ app.use(passport.session());
 passport.use(
   new LocalStrategy(async (username, password, done) => {
     try {
+      console.log("Attempting to find user:", username); // Log the username
       let user = await User.findOne({ username: username });
-      if (!user) return done(null, false, { message: "Incorrect username." });
+      if (!user) {
+        console.log("User not found"); // Log if the user is not found
+        return done(null, false, { message: "Incorrect username." });
+      }
 
       let isMatch = await bcrypt.compare(password, user.password);
       if (isMatch) {
+        console.log("User found and password matched"); // Log if the user is found and password matches
         return done(null, user);
       } else {
+        console.log("Password did not match"); // Log if the password did not match
         return done(null, false, { message: "Incorrect password." });
       }
     } catch (err) {
+      console.log("Error occurred:", err); // Log if an error occurred
       throw err;
     }
   })
