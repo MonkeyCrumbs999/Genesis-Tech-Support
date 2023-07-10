@@ -7,14 +7,24 @@ function ContactUs() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(
-      `Message sent:\n\nName: ${name}\nEmail: ${email}\nMessage: ${message}`
-    );
-    setName("");
-    setEmail("");
-    setMessage("");
+    const formData = new FormData(e.target);
+    const response = await fetch("/", {
+      method: "POST",
+      body: new URLSearchParams(formData).toString(),
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+    if (response.ok) {
+      alert("Message sent successfully!");
+      setName("");
+      setEmail("");
+      setMessage("");
+    } else {
+      alert("Error sending message");
+    }
   };
 
   return (
@@ -29,37 +39,39 @@ function ContactUs() {
           onSubmit={handleSubmit}
           className="max-w-md mx-auto"
           name="contact"
+          method="POST"
           data-netlify="true">
+          <input type="hidden" name="form-name" value="contact" />
           <div className="mb-4">
             <label className="block mb-2">Name</label>
             <input
               type="text"
+              name="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="w-full p-2 border-2 border-gray-200 rounded-md"
               required
-              name="name"
             />
           </div>
           <div className="mb-4">
             <label className="block mb-2">Email</label>
             <input
               type="email"
+              name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full p-2 border-2 border-gray-200 rounded-md"
               required
-              name="email"
             />
           </div>
           <div className="mb-4">
             <label className="block mb-2">Message</label>
             <textarea
+              name="message"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               className="w-full p-2 border-2 border-gray-200 rounded-md"
               required
-              name="message"
             />
           </div>
           <button
@@ -72,5 +84,3 @@ function ContactUs() {
     </MotionMain>
   );
 }
-
-export default ContactUs;
