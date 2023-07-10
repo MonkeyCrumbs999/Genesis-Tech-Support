@@ -20,6 +20,8 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    authContext.resetError(); // Reset the error state before login attempt
+
     await authContext.login(username, password);
     if (authContext.error) {
       // handle the error from authContext

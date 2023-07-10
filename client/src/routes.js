@@ -10,6 +10,9 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import MyAccount from "./components/MyAccount";
 import TVMounting from "./components/services/TVMounting";
+import TechEducation from "./components/services/TechEducation";
+import SoftwareTroubleshooting from "./components/services/SoftwareTroubleshooting";
+import InHomeSupport from "./components/services/InHomeSupport";
 
 export default function AppRoutes() {
   return (
@@ -20,6 +23,13 @@ export default function AppRoutes() {
       <Route path="/contact-us" element={<ContactUs />} />
       <Route path="/services" element={<Services />} />
       <Route path="/services/tv-mounting" element={<TVMounting />} />
+      <Route path="/services/tech-education" element={<TechEducation />} />
+      <Route
+        path="/services/software-troubleshooting"
+        element={<SoftwareTroubleshooting />}
+      />
+      <Route path="/services/in-home-support" element={<InHomeSupport />} />
+
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/my-account" element={<MyAccount />} />

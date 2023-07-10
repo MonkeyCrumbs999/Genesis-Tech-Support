@@ -106,6 +106,13 @@ app.post(
     }
     next();
   },
+  async (req, res, next) => {
+    const user = await User.findOne({ username: req.body.username });
+    if (!user) {
+      return res.status(400).send("User does not exist");
+    }
+    next();
+  },
   passport.authenticate("local"),
   (req, res) => {
     res

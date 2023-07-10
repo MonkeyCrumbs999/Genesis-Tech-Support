@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import MobileSidebar from "./components/MobileSidebar";
+import Footer from "./components/Footer";
 import ScrollProgressBar from "./components/ScrollProgressBar";
 import { AuthProvider } from "./contexts/AuthContext";
 import AppRoutes from "./routes";
@@ -43,6 +44,7 @@ export default function App() {
         <Header toggleMenu={toggleMenu} />
         <MobileSidebar isOpen={isOpen} toggleMenu={toggleMenu} />
         <AppRoutes />
+        <Footer />
       </Router>
     </AuthProvider>
   );

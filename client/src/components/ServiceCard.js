@@ -9,20 +9,20 @@ export default function ServiceCard({ title, description, link }) {
       className="flex flex-col h-full border-2 border-gray-200 rounded-lg shadow-lg overflow-hidden"
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5 }}>
+      transition={{ duration: 0.2 }}>
       <div className="flex-1 p-6 sm:p-6">
         <motion.h2
           className="text-3xl sm:text-4xl font-bold mb-4 font-oswald uppercase"
           initial={{ y: -20 }}
           animate={{ y: 0 }}
-          transition={{ duration: 0.4 }}>
+          transition={{ duration: 0.2 }}>
           {title}
         </motion.h2>
         <motion.p
           className="text-base text-gray-600"
           initial={{ y: 20 }}
           animate={{ y: 0 }}
-          transition={{ duration: 0.4 }}>
+          transition={{ duration: 0.2 }}>
           {description}
         </motion.p>
       </div>
