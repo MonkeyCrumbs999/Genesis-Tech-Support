@@ -7,14 +7,18 @@ Genesis is a tech support company that offers a variety of services including on
 - React.js
 - Tailwind CSS
 - Framer Motion
-- Square Bookings (to be integrated)
+- Passport.js
+- Mongoose
+- Netlify (for frontend deployment)
+- Heroku (for backend deployment)
 
 ## Features
 
 - Visually appealing and responsive design.
 - Animation effects using Framer Motion.
+- User authentication using Passport.js.
 - Information about the services offered by Genesis.
-- A "Schedule Now" button that will integrate with Square Bookings to schedule an appointment.
+- A "Contact Us" form that integrates with Netlify Forms.
 
 ## Getting Started
 
@@ -27,8 +31,9 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser. T
 
 ## Future Work
 
+- Continue development of the backend to handle data processing and storage.
+- Fix existing bugs and improve overall functionality.
 - Integration with Square Bookings to enable online scheduling of appointments.
-- Development of a backend to handle data processing and storage.
 
 ## License
 
