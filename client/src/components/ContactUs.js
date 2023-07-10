@@ -25,7 +25,11 @@ function ContactUs() {
           We're here to help. Send us a message and we'll get back to you as
           soon as possible.
         </p>
-        <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+        <form
+          onSubmit={handleSubmit}
+          className="max-w-md mx-auto"
+          name="contact"
+          data-netlify="true">
           <div className="mb-4">
             <label className="block mb-2">Name</label>
             <input
@@ -34,6 +38,7 @@ function ContactUs() {
               onChange={(e) => setName(e.target.value)}
               className="w-full p-2 border-2 border-gray-200 rounded-md"
               required
+              name="name"
             />
           </div>
           <div className="mb-4">
@@ -44,6 +49,7 @@ function ContactUs() {
               onChange={(e) => setEmail(e.target.value)}
               className="w-full p-2 border-2 border-gray-200 rounded-md"
               required
+              name="email"
             />
           </div>
           <div className="mb-4">
@@ -53,6 +59,7 @@ function ContactUs() {
               onChange={(e) => setMessage(e.target.value)}
               className="w-full p-2 border-2 border-gray-200 rounded-md"
               required
+              name="message"
             />
           </div>
           <button
