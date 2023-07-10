@@ -84,3 +84,5 @@ function ContactUs() {
     </MotionMain>
   );
 }
+
+export default ContactUs;
