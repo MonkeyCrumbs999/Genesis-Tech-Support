@@ -75,7 +75,23 @@ export const register = async (
 };
 
 // Function to handle logout requests
-export const logout = (setUser) => {
-  setUser(null);
-  localStorage.removeItem("user");
+export const logout = async (setUser) => {
+  try {
+    const response = await fetch(
+      "https://genesis-tech-support-2159e5e25391.herokuapp.com/logout",
+      {
+        method: "GET",
+        credentials: "include", // Include credentials
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Error logging out");
+    }
+
+    setUser(null);
+    localStorage.removeItem("user");
+  } catch (error) {
+    console.error(error);
+  }
 };
