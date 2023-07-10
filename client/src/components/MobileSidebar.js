@@ -1,9 +1,20 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 
+// NavLink Component
+function NavLink({ to, label, onClick }) {
+  return (
+    <li className="mx-2 my-4">
+      <Link to={to} onClick={onClick}>
+        {label}
+      </Link>
+    </li>
+  );
+}
+
+// MobileSidebar Component
 function MobileSidebar({ isOpen, toggleMenu }) {
   const sidebar = {
     open: { x: 0 },
@@ -22,7 +33,7 @@ function MobileSidebar({ isOpen, toggleMenu }) {
         sidebarRef.current &&
         !sidebarRef.current.contains(event.target)
       ) {
-        toggleMenu(event);
+        setTimeout(() => toggleMenu(event), 0);
       }
     }
 
@@ -45,44 +56,29 @@ function MobileSidebar({ isOpen, toggleMenu }) {
           exit="closed"
           variants={sidebar}
           transition={{ damping: 20, stiffness: 400 }}
-          className={`fixed top-0 left-0 bottom-0 w-64 bg-white p-4 overflow-y-auto z-50 border-r-[5px] border-genesis-orange`}
+          className={`fixed top-0 left-0 bottom-0 w-64 bg-white p-4 overflow-y-auto z-50 border-r-[3px] border-genesis-orange`}
           onClick={(event) => event.stopPropagation()}>
           <button onClick={toggleMenu} className="mb-4 ml-2 text-black">
             Close Menu
           </button>
           <ul className="mt-2 text-xl text-black font-aoboshi">
-            <li className="mx-2 my-4">
-              <Link to="/" onClick={toggleMenu}>
-                Home
-              </Link>
-            </li>
-            <li className="mx-2 my-4">
-              <Link to="/services" onClick={toggleMenu}>
-                Our Services
-              </Link>
-            </li>
-            {/* <li className="mx-2 my-4">
-              <Link to="/subscription" onClick={toggleMenu}>
-                My Subscription
-              </Link>
-            </li> */}
-            <li className="mx-2 my-4">
-              <Link to="/appointment" onClick={toggleMenu}>
-                Schedule Appointment
-              </Link>
-            </li>
-            <li className="mx-2 my-4">
-              <Link to="/contact-us" onClick={toggleMenu}>
-                Contact Us
-              </Link>
-            </li>
-            <li className="mx-2 hover:text-genesis-orange transition ease-in-out duration-500">
-              {user ? (
-                <Link to="/my-account">My Account</Link>
-              ) : (
-                <Link to="/login">Login</Link>
-              )}
-            </li>
+            <NavLink to="/" label="Home" onClick={toggleMenu} />
+            <NavLink to="/services" label="Our Services" onClick={toggleMenu} />
+            <NavLink
+              to="/appointment"
+              label="Schedule Appointment"
+              onClick={toggleMenu}
+            />
+            <NavLink to="/contact-us" label="Contact Us" onClick={toggleMenu} />
+            {user ? (
+              <NavLink
+                to="/my-account"
+                label="My Account"
+                onClick={toggleMenu}
+              />
+            ) : (
+              <NavLink to="/login" label="Login" onClick={toggleMenu} />
+            )}
           </ul>
         </motion.nav>
       )}

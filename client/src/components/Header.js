@@ -28,7 +28,7 @@ function Header({ isOpen, toggleMenu }) {
   };
 
   const handleMouseLeave = () => {
-    timeoutId.current = setTimeout(() => setIsAccountHovered(false), 500);
+    timeoutId.current = setTimeout(() => setIsAccountHovered(false), 1000);
   };
 
   useEffect(() => {

@@ -42,6 +42,13 @@ export default function App() {
         <ScrollToTop />
         <ScrollProgressBar />
         <Header toggleMenu={toggleMenu} />
+        <div
+          className={`fixed inset-0 bg-black transition-opacity duration-300 ease-in-out z-50 ${
+            isOpen
+              ? "opacity-50 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
+          }`}></div>
+
         <MobileSidebar isOpen={isOpen} toggleMenu={toggleMenu} />
         <AppRoutes />
         <Footer />
