@@ -1,7 +1,7 @@
 export const login = async (username, password, setUser, setError) => {
   try {
     const response = await fetch(
-      "https://genesis-tech-support-2159e5e25391.herokuapp.com/login",
+      "https://genesis-tech-support-2159e5e25391.herokuapp.com/user/login",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -40,7 +40,7 @@ export const register = async (
 ) => {
   try {
     const response = await fetch(
-      "https://genesis-tech-support-2159e5e25391.herokuapp.com/register",
+      "https://genesis-tech-support-2159e5e25391.herokuapp.com/user/register",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -78,7 +78,7 @@ export const register = async (
 export const logout = async (setUser) => {
   try {
     const response = await fetch(
-      "https://genesis-tech-support-2159e5e25391.herokuapp.com/logout",
+      "https://genesis-tech-support-2159e5e25391.herokuapp.com/user/logout",
       {
         method: "GET",
         credentials: "include", // Include credentials
