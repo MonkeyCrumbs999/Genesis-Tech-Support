@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Logo from "../assets/img/genesis-text.png";
 import { MotionMain, fadeIn } from "./animations/sharedAnimations";
 import { AuthContext } from "../contexts/AuthContext";
-import Alert from "./login-errors/Alert"; // Import the Alert component instead of Error
+import Alert from "./login-errors/Alert"; // Import the Alert component
 
 const MotionLink = motion(RouterLink);
 
@@ -21,9 +21,7 @@ function Login() {
     authContext.resetError(); // Reset the error state before login attempt
 
     await authContext.login(username, password);
-    if (authContext.error) {
-      // handle the error from authContext
-    } else {
+    if (!authContext.error) {
       navigate("/my-account");
     }
   };
