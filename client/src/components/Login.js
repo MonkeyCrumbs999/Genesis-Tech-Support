@@ -4,15 +4,13 @@ import { motion } from "framer-motion";
 import Logo from "../assets/img/genesis-text.png";
 import { MotionMain, fadeIn } from "./animations/sharedAnimations";
 import { AuthContext } from "../contexts/AuthContext";
-import Error from "./login-errors/Error"; // Import the Error component
+import Alert from "./Alert"; // Import the Alert component instead of Error
 
 const MotionLink = motion(RouterLink);
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  const { error } = useContext(AuthContext);
 
   const authContext = useContext(AuthContext);
   const navigate = useNavigate();
@@ -87,7 +85,9 @@ function Login() {
             </div>
 
             <div>
-              {error && <Error message={error} />}
+              {authContext.error && (
+                <Alert message={authContext.error} type="error" />
+              )}
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.1 }}
