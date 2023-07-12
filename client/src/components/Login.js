@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Logo from "../assets/img/genesis-text.png";
 import { MotionMain, fadeIn } from "./animations/sharedAnimations";
 import { AuthContext } from "../contexts/AuthContext";
-import Alert from "./Alert"; // Import the Alert component instead of Error
+import Alert from "./login-errors/Alert"; // Import the Alert component instead of Error
 
 const MotionLink = motion(RouterLink);
 
