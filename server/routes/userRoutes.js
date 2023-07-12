@@ -46,11 +46,17 @@ router.post("/register", async (req, res) => {
         console.error(err);
         return res.status(500).send("Error registering");
       }
-      passport.authenticate("local")(req, res, () => {
+      passport.authenticate("local", (err) => {
+        if (err) {
+          console.error(err);
+          return res
+            .status(500)
+            .send("Error authenticating after registration");
+        }
         res
           .status(200)
           .json({ user: { username: user.username, email: user.email } });
-      });
+      })(req, res);
     });
   } catch (error) {
     console.error(error);
