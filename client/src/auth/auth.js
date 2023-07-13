@@ -14,13 +14,7 @@ export const login = async (username, password, setUser, setError) => {
       if (response.status === 401) {
         setError("Invalid username or password");
       } else {
-        let result;
-        try {
-          result = await response.json();
-        } catch (error) {
-          result = await response.text();
-        }
-        setError(result.message || result);
+        setError("An error occurred during login");
       }
       return false;
     }
@@ -101,6 +95,7 @@ export const logout = async (setUser) => {
 
     setUser(null);
     localStorage.removeItem("user");
+    sessionStorage.clear(); // Clear the session storage
   } catch (error) {
     console.error(error);
   }
