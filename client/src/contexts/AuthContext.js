@@ -44,9 +44,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logoutCallback = async () => {
-    await logout(setUser);
+    const isLoggedOut = await logout();
+    if (isLoggedOut) setUser(null);
   };
-
   const resetError = () => setError(null);
 
   return (

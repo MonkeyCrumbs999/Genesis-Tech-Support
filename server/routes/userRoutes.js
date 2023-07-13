@@ -90,7 +90,8 @@ router.post(
 
 router.get("/logout", (req, res) => {
   req.logout();
+  req.session = null; // This line destroys the session
+  res.clearCookie("connect.sid"); // This line clears the session cookie from the client side
   res.status(200).send("Successfully Logged Out!");
 });
-
 module.exports = router;
