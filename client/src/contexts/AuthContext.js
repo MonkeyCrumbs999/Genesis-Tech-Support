@@ -15,13 +15,7 @@ export const AuthProvider = ({ children }) => {
 
   const loginCallback = async (username, password) => {
     const result = await login(username, password, setUser, setError);
-    return result;  // return the result of the login attempt
-  };
-
-    if (result === false) {
-      //you will handle error visibility in component
-      //setError is already invoked in login service
-    }
+    return result !== false; // return the result of the login attempt
   };
 
   const registerCallback = async (
@@ -46,10 +40,7 @@ export const AuthProvider = ({ children }) => {
       setUser,
       setError
     );
-    if (result === false) {
-      //you will handle error visibility in component
-      //setError is already invoked in register service
-    }
+    return result !== false; // return the result of the register attempt
   };
 
   const logoutCallback = () => logout(setUser);
