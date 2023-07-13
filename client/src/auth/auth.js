@@ -11,7 +11,8 @@ export const login = async (username, password, setUser, setError) => {
     );
 
     if (!response.ok) {
-      setError("Error signing in");
+      const result = await response.json();
+      setError(result.message); // Set error message from server
       return false;
     }
 
@@ -20,7 +21,7 @@ export const login = async (username, password, setUser, setError) => {
     localStorage.setItem("user", JSON.stringify(result.user));
     return true;
   } catch (error) {
-    setError("Error signing in");
+    setError("An error occurred during login");
     return false;
   }
 };

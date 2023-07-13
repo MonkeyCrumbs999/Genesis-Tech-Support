@@ -86,6 +86,7 @@ function Login() {
               {authContext.error && (
                 <Alert message={authContext.error} type="error" />
               )}
+
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.1 }}
