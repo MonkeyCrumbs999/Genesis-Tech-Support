@@ -44,11 +44,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logoutCallback = async () => {
-    const result = await logout();
-    if (result) {
-      setUser(null);
-    }
+    await logout(setUser);
   };
+
   const resetError = () => setError(null);
 
   return (
