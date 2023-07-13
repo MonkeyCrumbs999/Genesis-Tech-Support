@@ -11,11 +11,16 @@ export const login = async (username, password, setUser, setError) => {
     );
 
     if (!response.ok) {
-      try {
-        const result = await response.json();
-        setError(result.message); // Set error message from server
-      } catch (error) {
-        setError("An error occurred during login");
+      if (response.status === 401) {
+        setError("Invalid username or password");
+      } else {
+        let result;
+        try {
+          result = await response.json();
+        } catch (error) {
+          result = await response.text();
+        }
+        setError(result.message || result);
       }
       return false;
     }
