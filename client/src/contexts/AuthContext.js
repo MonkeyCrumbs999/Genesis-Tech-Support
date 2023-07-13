@@ -15,6 +15,8 @@ export const AuthProvider = ({ children }) => {
 
   const loginCallback = async (username, password) => {
     const result = await login(username, password, setUser, setError);
+    return result;  // return the result of the login attempt
+  };
 
     if (result === false) {
       //you will handle error visibility in component

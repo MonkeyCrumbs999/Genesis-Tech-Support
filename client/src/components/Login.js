@@ -20,8 +20,8 @@ function Login() {
 
     authContext.resetError(); // Reset the error state before login attempt
 
-    await authContext.login(username, password);
-    if (!authContext.error) {
+    const loginSuccessful = await authContext.login(username, password);
+    if (loginSuccessful) {
       navigate("/my-account");
     }
   };
