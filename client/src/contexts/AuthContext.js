@@ -43,8 +43,12 @@ export const AuthProvider = ({ children }) => {
     return result !== false; // return the result of the register attempt
   };
 
-  const logoutCallback = () => logout(setUser);
-
+  const logoutCallback = async () => {
+    const result = await logout();
+    if (result) {
+      setUser(null);
+    }
+  };
   const resetError = () => setError(null);
 
   return (
