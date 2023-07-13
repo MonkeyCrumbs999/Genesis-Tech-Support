@@ -11,8 +11,12 @@ export const login = async (username, password, setUser, setError) => {
     );
 
     if (!response.ok) {
-      const result = await response.json();
-      setError(result.message); // Set error message from server
+      try {
+        const result = await response.json();
+        setError(result.message); // Set error message from server
+      } catch (error) {
+        setError("An error occurred during login");
+      }
       return false;
     }
 
