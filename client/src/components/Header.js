@@ -28,7 +28,14 @@ function Header({ isOpen, toggleMenu }) {
   };
 
   const handleMouseLeave = () => {
-    timeoutId.current = setTimeout(() => setIsAccountHovered(false), 1000);
+    // Regular expression for Firefox user agent string
+    const isFirefox = /Firefox/i.test(navigator.userAgent);
+
+    if (isFirefox) {
+      timeoutId.current = setTimeout(() => setIsAccountHovered(false), 1000);
+    } else {
+      setIsAccountHovered(false);
+    }
   };
 
   useEffect(() => {
