@@ -6,6 +6,7 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 const { MONGODB_URI, SESSION_SECRET, PORT, CORS_ORIGIN } = require("./config");
 const passport = require("./auth");
 const userRoutes = require("./routes/userRoutes");
+const connectDB = require("./db");
 
 // Define MongoDB store
 const store = new MongoDBStore({
@@ -44,7 +45,17 @@ app.use(passport.session());
 
 app.use(express.json());
 
-// Routes
-app.use("/user", userRoutes);
+// Connect to the database before setting up the routes
+connectDB()
+  .then(() => {
+    console.log("MongoDB connected...");
 
-app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+    // Routes
+    app.use("/user", userRoutes);
+
+    // Start listening for requests
+    app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+  })
+  .catch((err) => {
+    console.error(err);
+  });
