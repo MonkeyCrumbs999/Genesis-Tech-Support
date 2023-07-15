@@ -25,8 +25,10 @@ export const AuthProvider = ({ children }) => {
     firstName,
     lastName,
     address,
-    phone,
-    zipCode
+    city,
+    state,
+    zipCode,
+    phone
   ) => {
     const result = await register(
       username,
@@ -35,8 +37,10 @@ export const AuthProvider = ({ children }) => {
       firstName,
       lastName,
       address,
-      phone,
+      city,
+      state,
       zipCode,
+      phone,
       setUser,
       setError
     );
