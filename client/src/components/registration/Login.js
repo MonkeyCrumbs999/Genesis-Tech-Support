@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import Logo from "../assets/img/genesis-text.png";
-import { MotionMain, fadeIn } from "./animations/sharedAnimations";
-import { AuthContext } from "../contexts/AuthContext";
-import Alert from "./login-errors/Alert"; // Import the Alert component
+import Logo from "../../assets/img/genesis-text.png";
+import { MotionMain, fadeIn } from "../animations/sharedAnimations";
+import { AuthContext } from "../../contexts/AuthContext";
+import Alert from "../login-errors/Alert"; // Import the Alert component
 
 const MotionLink = motion(RouterLink);
 

@@ -1,10 +1,12 @@
+//this is essentially the wrapper for the Register page, the RegisterForm is the form itself, FormField is the form styling/layout and valideInput is a function for validation
+
 import React, { useContext } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import Logo from "../assets/img/genesis-text.png";
-import { MotionMain, fadeIn } from "./animations/sharedAnimations";
+import Logo from "../../assets/img/genesis-text.png";
+import { MotionMain, fadeIn } from "../animations/sharedAnimations";
 import RegisterForm from "./RegisterForm";
-import { AuthContext } from "../contexts/AuthContext"; // Import AuthContext
+import { AuthContext } from "../../contexts/AuthContext"; // Import AuthContext
 
 const MotionLink = motion(RouterLink);
 
@@ -22,6 +24,8 @@ function Register() {
       firstName,
       lastName,
       address,
+      city, // included city
+      state, // included state
       phone,
       zipCode,
     } = formData;
@@ -36,6 +40,8 @@ function Register() {
       firstName,
       lastName,
       address,
+      city, // passed city to the register function
+      state, // passed state to the register function
       phone,
       zipCode
     );
