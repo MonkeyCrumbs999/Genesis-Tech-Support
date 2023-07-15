@@ -7,11 +7,13 @@ const Joi = require("joi");
 // Validation schemas
 const registerSchema = Joi.object({
   username: Joi.string().alphanum().min(3).max(30).required(),
-  password: Joi.string().pattern(new RegExp("^[ -~]{3,30}$")).required(),
   email: Joi.string().email().required(),
+  password: Joi.string().pattern(new RegExp("^[ -~]{3,30}$")).required(),
   firstName: Joi.string().min(1).max(30).required(),
   lastName: Joi.string().min(1).max(30).required(),
   address: Joi.string().min(1).max(100).required(),
+  city: Joi.required(),
+  state: Joi.string().min(2).max(20).required(),
   zipCode: Joi.string().min(5).max(9).required(),
   phone: Joi.string()
     .length(10)
@@ -34,11 +36,14 @@ router.post("/register", async (req, res) => {
     const newUser = new User({
       username: req.body.username,
       email: req.body.email,
+      password: req.body.password,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       address: req.body.address,
-      phone: req.body.phone,
+      city: req.body.city,
+      state: req.body.state,
       zipCode: req.body.zipCode,
+      phone: req.body.phone,
     });
 
     User.register(newUser, req.body.password, (err, user) => {
