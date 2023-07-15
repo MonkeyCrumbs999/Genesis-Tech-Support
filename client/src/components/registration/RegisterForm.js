@@ -61,8 +61,8 @@ function RegisterForm({ onSubmit }) {
       address.isValid &&
       city.isValid &&
       state.isValid &&
-      phone.isValid &&
-      zipCode.isValid
+      zipCode.isValid &&
+      phone.isValid
     ) {
       const data = {
         username: username.value,
@@ -73,8 +73,8 @@ function RegisterForm({ onSubmit }) {
         address: address.value,
         city: city.value,
         state: state.value,
-        phone: phone.value,
         zipCode: zipCode.value,
+        phone: phone.value,
       };
       console.log(data); // Log the data being passed to the onSubmit function
       onSubmit(data);
@@ -91,6 +91,26 @@ function RegisterForm({ onSubmit }) {
         isValid={username.isValid}
         message={username.message}
         onChange={(e) => validateInput(e.target.value, "username", setUsername)}
+      />
+
+      <FormField
+        label="Email"
+        id="email"
+        type="email"
+        value={email.value}
+        isValid={email.isValid}
+        message={email.message}
+        onChange={(e) => validateInput(e.target.value, "email", setEmail)}
+      />
+
+      <FormField
+        label="Password"
+        id="password"
+        type="password"
+        value={password.value}
+        isValid={password.isValid}
+        message={password.message}
+        onChange={(e) => validateInput(e.target.value, "password", setPassword)}
       />
 
       <FormField
@@ -163,26 +183,6 @@ function RegisterForm({ onSubmit }) {
         isValid={phone.isValid}
         message={phone.message}
         onChange={(e) => validateInput(e.target.value, "phone", setPhone)}
-      />
-
-      <FormField
-        label="Email"
-        id="email"
-        type="email"
-        value={email.value}
-        isValid={email.isValid}
-        message={email.message}
-        onChange={(e) => validateInput(e.target.value, "email", setEmail)}
-      />
-
-      <FormField
-        label="Password"
-        id="password"
-        type="password"
-        value={password.value}
-        isValid={password.isValid}
-        message={password.message}
-        onChange={(e) => validateInput(e.target.value, "password", setPassword)}
       />
 
       <div>

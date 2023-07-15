@@ -24,10 +24,10 @@ function Register() {
       firstName,
       lastName,
       address,
-      city, // included city
-      state, // included state
-      phone,
+      city,
+      state,
       zipCode,
+      phone,
     } = formData;
 
     console.log("Submitting registration form with data:", formData);
@@ -42,8 +42,8 @@ function Register() {
       address,
       city, // passed city to the register function
       state, // passed state to the register function
-      phone,
-      zipCode
+      zipCode,
+      phone
     );
 
     console.log("Registration result:", success);

@@ -39,8 +39,8 @@ export const register = async (
   address,
   city,
   state,
-  phone,
   zipCode,
+  phone,
   setUser,
   setError
 ) => {
@@ -60,8 +60,8 @@ export const register = async (
           address,
           city,
           state,
-          phone,
           zipCode,
+          phone,
         }),
       }
     );
