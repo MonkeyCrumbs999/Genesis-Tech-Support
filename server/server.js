@@ -19,6 +19,13 @@ store.on("error", function (error) {
 });
 
 app.use(
+  cors({
+    origin: CORS_ORIGIN,
+    credentials: true,
+  })
+);
+
+app.use(
   session({
     secret: SESSION_SECRET,
     cookie: {
@@ -30,13 +37,6 @@ app.use(
     store: store, // using MongoDB session store
     resave: false,
     saveUninitialized: false,
-  })
-);
-
-app.use(
-  cors({
-    origin: CORS_ORIGIN,
-    credentials: true,
   })
 );
 
