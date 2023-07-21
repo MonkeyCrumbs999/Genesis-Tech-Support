@@ -1,198 +1,84 @@
-import React, { useState } from "react";
+import React from "react";
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
 import FormField from "./FormField";
-import { validateInput } from "./validateInput";
+
+// Define a validation schema with Yup
+const validationSchema = Yup.object().shape({
+  username: Yup.string()
+    .min(3, "Must be at least 3 characters")
+    .required("Required"),
+  email: Yup.string().email("Invalid email format").required("Required"),
+  password: Yup.string()
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]|.*[!@#$%^&*()\-_=+{};:,<.>]).{6,}$/,
+      "Password must be at least 6 characters, include at least 1 uppercase letter, 1 lowercase letter, and 1 number or symbol"
+    )
+    .required("Required"),
+  firstName: Yup.string()
+    .min(3, "Must be at least 3 characters")
+    .required("Required"),
+  lastName: Yup.string()
+    .min(3, "Must be at least 3 characters")
+    .required("Required"),
+  address: Yup.string()
+    .min(10, "Must be at least 10 characters")
+    .required("Required"),
+  city: Yup.string()
+    .min(2, "Must be at least 2 characters")
+    .required("Required"),
+  state: Yup.string()
+    .matches(/^[A-Z]{2}$/, "Invalid state format. Must be 2 uppercase letters")
+    .required("Required"),
+  zipCode: Yup.string()
+    .matches(/^[0-9]{5}$/, "Invalid Zip Code format")
+    .required("Required"),
+  phone: Yup.string()
+    .matches(/^[0-9]{10}$/, "Invalid phone format")
+    .required("Required"),
+});
 
 function RegisterForm({ onSubmit }) {
-  const [username, setUsername] = useState({
-    value: "",
-    isValid: null,
-    message: "",
-  });
-  const [email, setEmail] = useState({ value: "", isValid: null, message: "" });
-  const [password, setPassword] = useState({
-    value: "",
-    isValid: null,
-    message: "",
-  });
-  const [firstName, setFirstName] = useState({
-    value: "",
-    isValid: null,
-    message: "",
-  });
-  const [lastName, setLastName] = useState({
-    value: "",
-    isValid: null,
-    message: "",
-  });
-  const [address, setAddress] = useState({
-    value: "",
-    isValid: null,
-    message: "",
-  });
-  const [city, setCity] = useState({
-    value: "",
-    isValid: null,
-    message: "",
-  });
-  const [state, setState] = useState({
-    value: "",
-    isValid: null,
-    message: "",
-  });
-  const [zipCode, setZipCode] = useState({
-    value: "",
-    isValid: null,
-    message: "",
-  });
-  const [phone, setPhone] = useState({
-    value: "",
-    isValid: null,
-    message: "",
-  });
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (
-      username.isValid &&
-      email.isValid &&
-      password.isValid &&
-      firstName.isValid &&
-      lastName.isValid &&
-      address.isValid &&
-      city.isValid &&
-      state.isValid &&
-      zipCode.isValid &&
-      phone.isValid
-    ) {
-      const data = {
-        username: username.value,
-        email: email.value,
-        password: password.value,
-        firstName: firstName.value,
-        lastName: lastName.value,
-        address: address.value,
-        city: city.value,
-        state: state.value,
-        zipCode: zipCode.value,
-        phone: phone.value,
-      };
-      console.log(data); // Log the data being passed to the onSubmit function
-      onSubmit(data);
-    }
+  // Initial form values
+  const initialValues = {
+    username: "",
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    address: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    phone: "",
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <FormField
-        label="Username"
-        id="username"
-        type="text"
-        value={username.value}
-        isValid={username.isValid}
-        message={username.message}
-        onChange={(e) => validateInput(e.target.value, "username", setUsername)}
-      />
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}>
+      {() => (
+        <Form className="space-y-6 w-full mx-auto text-left">
+          <FormField name="username" label="Username" type="text" />
+          <FormField name="email" label="Email" type="email" />
+          <FormField name="password" label="Password" type="password" />
+          <FormField name="firstName" label="First Name" type="text" />
+          <FormField name="lastName" label="Last Name" type="text" />
+          <FormField name="address" label="Address" type="text" />
+          <FormField name="city" label="City" type="text" />
+          <FormField name="state" label="State" type="text" />
+          <FormField name="zipCode" label="Zip Code" type="text" />
+          <FormField name="phone" label="Phone Number" type="text" />
 
-      <FormField
-        label="Email"
-        id="email"
-        type="email"
-        value={email.value}
-        isValid={email.isValid}
-        message={email.message}
-        onChange={(e) => validateInput(e.target.value, "email", setEmail)}
-      />
-
-      <FormField
-        label="Password"
-        id="password"
-        type="password"
-        value={password.value}
-        isValid={password.isValid}
-        message={password.message}
-        onChange={(e) => validateInput(e.target.value, "password", setPassword)}
-      />
-
-      <FormField
-        label="First Name"
-        id="firstName"
-        type="text"
-        value={firstName.value}
-        isValid={firstName.isValid}
-        message={firstName.message}
-        onChange={(e) =>
-          validateInput(e.target.value, "firstName", setFirstName)
-        }
-      />
-
-      <FormField
-        label="Last Name"
-        id="lastName"
-        type="text"
-        value={lastName.value}
-        isValid={lastName.isValid}
-        message={lastName.message}
-        onChange={(e) => validateInput(e.target.value, "lastName", setLastName)}
-      />
-
-      <FormField
-        label="Address"
-        id="address"
-        type="text"
-        value={address.value}
-        isValid={address.isValid}
-        message={address.message}
-        onChange={(e) => validateInput(e.target.value, "address", setAddress)}
-      />
-
-      <FormField
-        label="City"
-        id="city"
-        type="text"
-        value={city.value}
-        isValid={city.isValid}
-        message={city.message}
-        onChange={(e) => validateInput(e.target.value, "city", setCity)}
-      />
-
-      <FormField
-        label="State"
-        id="state"
-        type="text"
-        value={state.value}
-        isValid={state.isValid}
-        message={state.message}
-        onChange={(e) => validateInput(e.target.value, "state", setState)}
-      />
-
-      <FormField
-        label="Zip Code"
-        id="zipCode"
-        type="text"
-        value={zipCode.value}
-        isValid={zipCode.isValid}
-        message={zipCode.message}
-        onChange={(e) => validateInput(e.target.value, "zipCode", setZipCode)}
-      />
-
-      <FormField
-        label="Phone Number"
-        id="phone"
-        type="tel"
-        value={phone.value}
-        isValid={phone.isValid}
-        message={phone.message}
-        onChange={(e) => validateInput(e.target.value, "phone", setPhone)}
-      />
-
-      <div>
-        <button
-          type="submit"
-          className="flex w-full justify-center rounded-md bg-genesis-blue px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-genesis-blue-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-genesis-blue">
-          Register
-        </button>
-      </div>
-    </form>
+          <button
+            type="submit"
+            className="flex w-full justify-center mt-6 rounded-md bg-genesis-blue px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-genesis-blue-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-genesis-blue transition-transform transform hover:scale-105">
+            Register
+          </button>
+        </Form>
+      )}
+    </Formik>
   );
 }
 

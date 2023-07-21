@@ -2,6 +2,10 @@
 
 Genesis is a tech support company that offers a variety of services including one-on-one tech education, TV mounting & setup, PC & Mac software troubleshooting, and in-home tech support. This repository contains the code for the official Genesis tech support website.
 
+## Live Demo
+
+The live demo is located here: https://thriving-palmier-d79b26.netlify.app/
+
 ## Technologies Used
 
 - React.js

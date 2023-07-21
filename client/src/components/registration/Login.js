@@ -1,29 +1,49 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Logo from "../../assets/img/genesis-text.png";
 import { MotionMain, fadeIn } from "../animations/sharedAnimations";
 import { AuthContext } from "../../contexts/AuthContext";
 import Alert from "../login-errors/Alert"; // Import the Alert component
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
+import FormField from "./FormField";
 
 const MotionLink = motion(RouterLink);
 
-function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+// Define a validation schema with Yup
+const validationSchema = Yup.object().shape({
+  username: Yup.string()
+    .min(3, "Must be at least 3 characters")
+    .required("Required"),
+  password: Yup.string()
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]|.*[!@#$%^&*()\-_=+{};:,<.>]).{6,}$/,
+      "Password must be at least 6 characters, include at least 1 uppercase letter, 1 lowercase letter, and 1 number or symbol"
+    )
+    .required("Required"),
+});
 
+function Login() {
   const authContext = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
+  const handleSubmit = async (values) => {
     authContext.resetError(); // Reset the error state before login attempt
 
-    const loginSuccessful = await authContext.login(username, password);
+    const loginSuccessful = await authContext.login(
+      values.username,
+      values.password
+    );
     if (loginSuccessful) {
       navigate("/my-account");
     }
+  };
+
+  // Initial form values
+  const initialValues = {
+    username: "",
+    password: "",
   };
 
   return (
@@ -41,61 +61,31 @@ function Login() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label
-                htmlFor="username"
-                className="block text-sm font-medium leading-6 text-gray-900">
-                Username
-              </label>
-              <div className="mt-2">
-                <input
-                  id="username"
-                  name="username"
-                  type="text"
-                  autoComplete="username"
-                  required
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-genesis-blue sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}>
+            {() => (
+              <Form className="space-y-6">
+                <FormField name="username" label="Username" type="text" />
+                <FormField name="password" label="Password" type="password" />
 
-            <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium leading-6 text-gray-900">
-                Password
-              </label>
-              <div className="mt-2">
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-genesis-blue sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
+                <div>
+                  {authContext.error && (
+                    <Alert message={authContext.error} type="error" />
+                  )}
 
-            <div>
-              {authContext.error && (
-                <Alert message={authContext.error} type="error" />
-              )}
-
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.1 }}
-                type="submit"
-                className="flex w-full justify-center rounded-md bg-genesis-blue px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-genesis-blue-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-genesis-blue">
-                Sign in
-              </motion.button>
-            </div>
-          </form>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.1 }}
+                    type="submit"
+                    className="flex w-full justify-center rounded-md bg-genesis-blue px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-genesis-blue-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-genesis-blue">
+                    Sign in
+                  </motion.button>
+                </div>
+              </Form>
+            )}
+          </Formik>
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Not a member?{" "}
