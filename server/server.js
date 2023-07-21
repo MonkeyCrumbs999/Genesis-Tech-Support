@@ -18,6 +18,8 @@ store.on("error", function (error) {
   console.log(error);
 });
 
+app.set("trust proxy", 1);
+
 app.use(
   cors({
     origin: CORS_ORIGIN,
