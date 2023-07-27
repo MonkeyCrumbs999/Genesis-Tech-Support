@@ -23,26 +23,19 @@ function Header({ isOpen, toggleMenu }) {
   };
 
   const handleMouseEnter = () => {
-    if (timeoutId) clearTimeout(timeoutId);
+    clearTimeout(timeoutId.current); // Clear timeout on mouse enter
     setIsAccountHovered(true);
   };
 
   const handleMouseLeave = () => {
-    // Regular expression for Firefox user agent string
-    const isFirefox = /Firefox/i.test(navigator.userAgent);
-
-    if (isFirefox) {
-      timeoutId.current = setTimeout(() => setIsAccountHovered(false), 1000);
-    } else {
-      setIsAccountHovered(false);
-    }
+    timeoutId.current = setTimeout(() => setIsAccountHovered(false), 1500); // Set timeout to 1.5 seconds
   };
 
   useEffect(() => {
     window.addEventListener("scroll", checkScroll);
     return () => {
       window.removeEventListener("scroll", checkScroll);
-      if (timeoutId.current) clearTimeout(timeoutId.current);
+      clearTimeout(timeoutId.current); // Clear timeout on component unmount
     };
   }, []);
 
