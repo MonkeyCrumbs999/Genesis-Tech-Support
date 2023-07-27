@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 
 // NavLink Component
-function NavLink({ to, label, onClick }) {
+function NavLink({ to, label, onClick, className = "" }) {
   return (
-    <li className="mx-2 my-4">
+    <li className={`mx-2 my-4 ${className}`}>
       <Link to={to} onClick={onClick}>
         {label}
       </Link>
@@ -71,21 +71,19 @@ function MobileSidebar({ isOpen, toggleMenu }) {
             />
             <NavLink to="/contact-us" label="Contact Us" onClick={toggleMenu} />
             {user ? (
-              ((
+              <>
                 <NavLink
                   to="/my-account"
                   label="My Account"
                   onClick={toggleMenu}
                 />
-              ),
-              (
                 <NavLink
                   to="/logout"
                   label="Logout"
                   onClick={toggleMenu}
                   className="text-sm"
                 />
-              ))
+              </>
             ) : (
               <NavLink to="/login" label="Login" onClick={toggleMenu} />
             )}
