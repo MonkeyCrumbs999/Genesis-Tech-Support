@@ -71,11 +71,21 @@ function MobileSidebar({ isOpen, toggleMenu }) {
             />
             <NavLink to="/contact-us" label="Contact Us" onClick={toggleMenu} />
             {user ? (
-              <NavLink
-                to="/my-account"
-                label="My Account"
-                onClick={toggleMenu}
-              />
+              ((
+                <NavLink
+                  to="/my-account"
+                  label="My Account"
+                  onClick={toggleMenu}
+                />
+              ),
+              (
+                <NavLink
+                  to="/logout"
+                  label="Logout"
+                  onClick={toggleMenu}
+                  className="text-sm"
+                />
+              ))
             ) : (
               <NavLink to="/login" label="Login" onClick={toggleMenu} />
             )}
