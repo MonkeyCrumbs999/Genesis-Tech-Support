@@ -50,7 +50,7 @@ function MyAccount() {
 
   return (
     <motion.div
-      className="flex flex-col items-center justify-center h-screen p-4 pt-12"
+      className="flex flex-col items-center justify-start h-screen p-4 pt-32"
       variants={containerVariants}
       initial="hidden"
       animate="visible">

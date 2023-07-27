@@ -3,7 +3,7 @@
 import React, { useContext } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import Logo from "../../assets/img/genesis-text.png";
+import Logo from "../../assets/img/genesis-black.png";
 import { MotionMain, fadeIn } from "../animations/sharedAnimations";
 import RegisterForm from "./RegisterForm";
 import { AuthContext } from "../../contexts/AuthContext"; // Import AuthContext
