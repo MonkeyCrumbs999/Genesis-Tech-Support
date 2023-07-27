@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 
 // NavLink Component
-function NavLink({ to, label, onClick, className = "" }) {
+function NavLink({ to, label, onClick }) {
   return (
-    <li className={`mx-2 my-4 ${className}`}>
+    <li className="mx-2 my-4">
       <Link to={to} onClick={onClick}>
         {label}
       </Link>
@@ -21,7 +21,13 @@ function MobileSidebar({ isOpen, toggleMenu }) {
     closed: { x: "-100%" },
   };
 
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/login");
+  };
 
   const sidebarRef = useRef(null); // Create a ref to the sidebar
 
@@ -77,12 +83,9 @@ function MobileSidebar({ isOpen, toggleMenu }) {
                   label="My Account"
                   onClick={toggleMenu}
                 />
-                <NavLink
-                  to="/logout"
-                  label="Logout"
-                  onClick={toggleMenu}
-                  className="text-sm"
-                />
+                <li className="mx-2 my-4 text-sm">
+                  <button onClick={handleLogout}>Logout</button>
+                </li>
               </>
             ) : (
               <NavLink to="/login" label="Login" onClick={toggleMenu} />
