@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
-import { MotionMain, fadeIn } from "./animations/sharedAnimations"; // Adjust the path if necessary
+import { MotionMain, fadeIn } from "./animations/sharedAnimations";
 
 function ContactUs() {
   const [name, setName] = useState("");
@@ -12,10 +12,10 @@ function ContactUs() {
 
     emailjs
       .sendForm(
-        "service_9mqp2ej",
-        "template_d2s1obw",
+        "service_9mqp2ej", //service id from emailjs.com
+        "template_d2s1obw", //template id from emailjs.com
         e.target,
-        "webwavebuilding@yahoo.com"
+        "QXH-ZNI5yK9ppXX6W" //user id from emailjs.com
       )
       .then(
         (result) => {
