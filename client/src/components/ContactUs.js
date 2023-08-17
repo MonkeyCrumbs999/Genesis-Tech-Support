@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import emailjs from "emailjs-com";
 import { MotionMain, fadeIn } from "./animations/sharedAnimations"; // Adjust the path if necessary
 
 function ContactUs() {
@@ -7,36 +7,39 @@ function ContactUs() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = async (e) => {
+  const sendEmail = (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const response = await fetch("/", {
-      method: "POST",
-      body: new URLSearchParams(formData).toString(),
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    });
-    if (response.ok) {
-      alert("Message sent successfully!");
-      setName("");
-      setEmail("");
-      setMessage("");
-    } else {
-      alert("Error sending message");
-    }
+
+    emailjs
+      .sendForm(
+        "service_9mqp2ej",
+        "template_d2s1obw",
+        e.target,
+        "webwavebuilding@yahoo.com"
+      )
+      .then(
+        (result) => {
+          alert("Message sent successfully!");
+          setName("");
+          setEmail("");
+          setMessage("");
+        },
+        (error) => {
+          alert("Error sending message");
+        }
+      );
   };
 
   return (
     <MotionMain variants={fadeIn} initial="hidden" animate="visible">
       <main className="py-28 p-4">
-        <h2 className="text-4xl  text-center mb-4">Contact Us</h2>
+        <h2 className="text-4xl text-center mb-4">Contact Us</h2>
         <p className="text-center mb-4">
           We're here to help. Send us a message and we'll get back to you as
           soon as possible.
         </p>
         <form
-          onSubmit={handleSubmit}
+          onSubmit={sendEmail}
           className="max-w-md mx-auto"
           name="contact"
           method="POST"
