@@ -1,16 +1,13 @@
-import React, { useContext } from "react";
-import { Route, Navigate } from "react-router-dom";
-import { AuthContext } from "./contexts/AuthContext"; // Adjust the path based on your directory structure
+// ProtectedRoute.js
 
-function ProtectedRoute({ element, ...rest }) {
+import { useContext } from "react";
+import { AuthContext } from "./contexts/AuthContext";
+import NotLoggedIn from "./NotLoggedIn";
+
+const ProtectedRoute = ({ children }) => {
   const { user } = useContext(AuthContext);
 
-  return (
-    <Route
-      {...rest}
-      element={user ? element : <Navigate to="/login" replace />}
-    />
-  );
-}
+  return user ? children : <NotLoggedIn />;
+};
 
 export default ProtectedRoute;

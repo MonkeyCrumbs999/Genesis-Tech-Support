@@ -33,21 +33,6 @@ function MyAccount() {
     );
   }
 
-  if (!user) {
-    return (
-      <div className="flex flex-col items-center justify-center h-screen p-4 pt-28">
-        <h2 className="text-3xl font-bold">You're not logged in!</h2>
-        <p className="text-lg mt-4">
-          Please{" "}
-          <Link to="/login" className="text-blue-500 underline">
-            login
-          </Link>{" "}
-          to view your profile.
-        </p>
-      </div>
-    );
-  }
-
   return (
     <motion.div
       className="flex flex-col items-center justify-start h-screen p-4 pt-32"
