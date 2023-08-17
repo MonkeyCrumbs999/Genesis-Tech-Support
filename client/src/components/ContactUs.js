@@ -12,7 +12,7 @@ function ContactUs() {
 
     emailjs
       .sendForm(
-        "service_9mqp2ej", //service id from emailjs.com
+        "service_c3ykmr4", //service id from emailjs.com
         "template_d2s1obw", //template id from emailjs.com
         e.target,
         "QXH-ZNI5yK9ppXX6W" //user id from emailjs.com

@@ -70,11 +70,13 @@ function MobileSidebar({ isOpen, toggleMenu }) {
           <ul className="mt-2 text-xl text-black font-aoboshi">
             <NavLink to="/" label="Home" onClick={toggleMenu} />
             <NavLink to="/services" label="Our Services" onClick={toggleMenu} />
-            <NavLink
-              to="/appointment"
-              label="Schedule Appointment"
-              onClick={toggleMenu}
-            />
+            {user && (
+              <NavLink
+                to="/appointment"
+                label="Schedule Appointment"
+                onClick={toggleMenu}
+              />
+            )}
             <NavLink to="/contact-us" label="Contact Us" onClick={toggleMenu} />
             {user ? (
               <>
