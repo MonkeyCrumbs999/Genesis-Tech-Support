@@ -41,7 +41,7 @@ function Header({ isOpen, toggleMenu }) {
 
   return (
     <header
-      className={`p-4 bg-genesis-blue text-white flex flex-wrap items-center justify-between ${
+      className={`p-4 bg-gray-700 text-white flex flex-wrap items-center justify-between ${
         isScrolled ? "min-h-16" : "min-h-24"
       } font-aoboshi fixed w-full z-50 transition-all duration-300 ease-in-out`}
       style={{
@@ -81,7 +81,7 @@ function Header({ isOpen, toggleMenu }) {
         </svg>
       </button>
       <nav className="hidden md:flex">
-        <ul className="mt-2 text-md custom-nav:text-sm lg:text-xl md:flex md:justify-around md:items-center">
+        <ul className="mt-2 text-md text-zinc-100 custom-nav:text-sm lg:text-xl md:flex md:justify-around md:items-center">
           <li className="mx-2">
             <Link
               className="hover:text-genesis-orange transition ease-in-out duration-500"
@@ -96,13 +96,16 @@ function Header({ isOpen, toggleMenu }) {
               Our Services
             </Link>
           </li>
-          <li className="mx-2">
-            <Link
-              className="hover:text-genesis-orange transition ease-in-out duration-500"
-              to="/appointment">
-              Schedule Appointment
-            </Link>
-          </li>
+          {user && (
+            <li className="mx-2">
+              <Link
+                className="hover:text-genesis-orange transition ease-in-out duration-500"
+                to="/appointment">
+                Schedule Appointment
+              </Link>
+            </li>
+          )}
+
           <li className="mx-2">
             <Link
               className="hover:text-genesis-orange transition ease-in-out duration-500"
