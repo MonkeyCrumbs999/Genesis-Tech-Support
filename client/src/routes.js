@@ -1,5 +1,5 @@
-// routes.js
 import { Route, Routes } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute"; // Import ProtectedRoute from the src folder
 
 import Home from "./components/Home";
 import Subscription from "./components/Subscription";
@@ -19,7 +19,8 @@ export default function AppRoutes() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/subscription" element={<Subscription />} />
-      <Route path="/appointment" element={<Appointment />} />
+      <ProtectedRoute path="/appointment" element={<Appointment />} />{" "}
+      {/* Protected route */}
       <Route path="/contact-us" element={<ContactUs />} />
       <Route path="/services" element={<Services />} />
       <Route path="/services/tv-mounting" element={<TVMounting />} />
@@ -29,10 +30,10 @@ export default function AppRoutes() {
         element={<SoftwareTroubleshooting />}
       />
       <Route path="/services/in-home-support" element={<InHomeSupport />} />
-
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/my-account" element={<MyAccount />} />
+      <ProtectedRoute path="/my-account" element={<MyAccount />} />{" "}
+      {/* Protected route */}
     </Routes>
   );
 }

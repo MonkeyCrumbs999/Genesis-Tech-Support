@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import Logo from "../../assets/img/genesis-black.png";
 import { MotionMain, fadeIn } from "../animations/sharedAnimations";
 import RegisterForm from "./RegisterForm";
-import { AuthContext } from "../../contexts/AuthContext"; // Import AuthContext
+import { AuthContext } from "../../contexts/AuthContext";
 
 const MotionLink = motion(RouterLink);
 
