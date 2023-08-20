@@ -1,9 +1,8 @@
 const express = require("express");
 const app = express();
-const cors = require("cors");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
-const { MONGODB_URI, SESSION_SECRET, PORT, CORS_ORIGIN } = require("./config");
+const { MONGODB_URI, SESSION_SECRET, PORT } = require("./config");
 const passport = require("./auth");
 const userRoutes = require("./routes/userRoutes");
 const connectDB = require("./db");
@@ -21,10 +20,12 @@ store.on("error", function (error) {
 app.set("trust proxy", 1);
 
 app.use((req, res, next) => {
-  const allowedOrigins = [
-    process.env.CORS_ORIGIN_PRODUCTION,
-    process.env.CORS_ORIGIN_DEVELOPMENT,
-  ];
+  let allowedOrigins;
+  if (process.env.ENV === "production") {
+    allowedOrigins = [process.env.CORS_ORIGIN_PRODUCTION];
+  } else {
+    allowedOrigins = [process.env.CORS_ORIGIN_DEVELOPMENT];
+  }
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
@@ -37,13 +38,6 @@ app.use((req, res, next) => {
   );
   next();
 });
-
-app.use(
-  cors({
-    origin: CORS_ORIGIN,
-    credentials: true,
-  })
-);
 
 app.use(
   session({
