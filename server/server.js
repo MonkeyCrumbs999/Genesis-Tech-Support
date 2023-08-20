@@ -20,6 +20,24 @@ store.on("error", function (error) {
 
 app.set("trust proxy", 1);
 
+app.use((req, res, next) => {
+  const allowedOrigins = [
+    process.env.CORS_ORIGIN_PRODUCTION,
+    process.env.CORS_ORIGIN_DEVELOPMENT,
+  ];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 app.use(
   cors({
     origin: CORS_ORIGIN,
