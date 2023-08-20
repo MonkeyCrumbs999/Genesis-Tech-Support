@@ -1,20 +1,24 @@
 require("dotenv").config();
 
-if (!process.env.MONGODB_URI) {
-  throw new Error("MONGODB_URI is not defined in .env file");
-}
+const ENV = process.env.ENV;
+const MONGODB_URI =
+  ENV === "production"
+    ? process.env.MONGODB_URI_PRODUCTION
+    : process.env.MONGODB_URI_DEVELOPMENT;
+const CORS_ORIGIN =
+  ENV === "production"
+    ? process.env.CORS_ORIGIN_PRODUCTION
+    : process.env.CORS_ORIGIN_DEVELOPMENT;
 
-if (!process.env.SESSION_SECRET) {
-  throw new Error("SESSION_SECRET is not defined in .env file");
-}
-
-if (!process.env.CORS_ORIGIN) {
-  throw new Error("CORS_ORIGIN is not defined in .env file");
+if (!MONGODB_URI || !process.env.SESSION_SECRET || !CORS_ORIGIN) {
+  throw new Error(
+    `MONGODB_URI: ${MONGODB_URI}, SESSION_SECRET: ${process.env.SESSION_SECRET}, CORS_ORIGIN: ${CORS_ORIGIN} are not defined`
+  );
 }
 
 module.exports = {
-  MONGODB_URI: process.env.MONGODB_URI,
+  MONGODB_URI: MONGODB_URI,
   SESSION_SECRET: process.env.SESSION_SECRET,
   PORT: process.env.PORT || 5000,
-  CORS_ORIGIN: process.env.CORS_ORIGIN,
+  CORS_ORIGIN: CORS_ORIGIN,
 };
