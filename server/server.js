@@ -20,14 +20,12 @@ store.on("error", function (error) {
 app.set("trust proxy", 1);
 
 app.use((req, res, next) => {
-  let allowedOrigins;
-  if (process.env.ENV === "production") {
-    allowedOrigins = [process.env.CORS_ORIGIN_PRODUCTION];
-  } else {
-    allowedOrigins = [process.env.CORS_ORIGIN_DEVELOPMENT];
-  }
+  const allowedOrigins = {
+    production: process.env.CORS_ORIGIN_PRODUCTION,
+    development: process.env.CORS_ORIGIN_DEVELOPMENT,
+  };
   const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
+  if (origin === allowedOrigins[process.env.NODE_ENV]) {
     res.setHeader("Access-Control-Allow-Origin", origin);
   }
   res.header("Access-Control-Allow-Credentials", true);

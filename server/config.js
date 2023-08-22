@@ -1,12 +1,12 @@
 require("dotenv").config();
 
-const ENV = process.env.ENV;
+const NODE_ENV = process.env.NODE_ENV || "development";
 const MONGODB_URI =
-  ENV === "production"
+  NODE_ENV === "production"
     ? process.env.MONGODB_URI_PRODUCTION
     : process.env.MONGODB_URI_DEVELOPMENT;
 const CORS_ORIGIN =
-  ENV === "production"
+  NODE_ENV === "production"
     ? process.env.CORS_ORIGIN_PRODUCTION
     : process.env.CORS_ORIGIN_DEVELOPMENT;
 
