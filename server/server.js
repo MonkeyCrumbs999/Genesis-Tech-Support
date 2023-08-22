@@ -20,12 +20,12 @@ store.on("error", function (error) {
 app.set("trust proxy", 1);
 
 app.use((req, res, next) => {
-  const allowedOrigins = {
-    production: process.env.CORS_ORIGIN_PRODUCTION,
-    development: process.env.CORS_ORIGIN_DEVELOPMENT,
-  };
+  const allowedOrigins = [
+    "http://localhost:3000",
+    process.env.CORS_ORIGIN_PRODUCTION,
+  ];
   const origin = req.headers.origin;
-  if (origin === allowedOrigins[process.env.NODE_ENV]) {
+  if (allowedOrigins.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
   }
   res.header("Access-Control-Allow-Credentials", true);
