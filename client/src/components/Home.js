@@ -1,6 +1,6 @@
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
-import HeroImage from "../assets/img/hero.png";
+import HeroImage from "../assets/img/hero.webp";
 import { MotionMain, fadeIn } from "./animations/sharedAnimations";
 import { motion } from "framer-motion";
 import "../App.css";
