@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import HeroImage from "../assets/img/hero.webp";
-import { MotionMain, fadeIn } from "./animations/sharedAnimations";
+import { MotionMain, zoomIn } from "./animations/sharedAnimations";
 import { motion } from "framer-motion";
 import "../App.css";
 
@@ -24,7 +24,7 @@ function Home() {
   const bgOpacityClass = useMemo(() => isFirefox ? "" : "bg-opacity-10", [isFirefox]);
   const bgColorClass = useMemo(() => isFirefox ? "bg-genesis-blue" : "bg-white", [isFirefox]);
   return (
-    <MotionMain variants={fadeIn} initial="hidden" animate="visible">
+    <MotionMain variants={zoomIn} initial="hidden" animate="visible">
       <main>
         <section
           className={`relative flex items-center justify-center bg-center pb-[50px] drop-shadow-md shadow-inset-bottom sm:bg-right h-[450px] md:h-[550px] lg:h-[600px] ${blurClass}`}

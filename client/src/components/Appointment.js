@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
-import { MotionMain, fadeIn } from "./animations/sharedAnimations";
+import { MotionMain, zoomIn } from "./animations/sharedAnimations";
 
 function Appointment() {
   const [loading, setLoading] = useState(true);
@@ -14,7 +14,7 @@ function Appointment() {
   }, []);
 
   return (
-    <MotionMain variants={fadeIn} initial="hidden" animate="visible">
+    <MotionMain variants={zoomIn} initial="hidden" animate="visible">
       <main className="pt-28 p-4">
         <h2 className="text-4xl text-center mb-4">Schedule an Appointment</h2>
         <p className="text-center mb-4">

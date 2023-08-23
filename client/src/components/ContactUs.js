@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
-import { MotionMain, fadeIn } from "./animations/sharedAnimations";
+import { MotionMain, zoomIn } from "./animations/sharedAnimations";
 
 function ContactUs() {
   const [name, setName] = useState("");
@@ -31,7 +31,7 @@ function ContactUs() {
   };
 
   return (
-    <MotionMain variants={fadeIn} initial="hidden" animate="visible">
+    <MotionMain variants={zoomIn} initial="hidden" animate="visible">
       <main className="py-28 p-4">
         <h2 className="text-4xl text-center mb-4">Contact Us</h2>
         <p className="text-center mb-4">

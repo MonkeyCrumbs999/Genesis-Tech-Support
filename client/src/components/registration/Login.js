@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Logo from "../../assets/img/genesis-black.png";
-import { MotionMain, fadeIn } from "../animations/sharedAnimations";
+import { MotionMain, zoomIn } from "../animations/sharedAnimations";
 import { AuthContext } from "../../contexts/AuthContext";
 import Alert from "../login-errors/Alert"; // Import the Alert component
 import { Formik, Form } from "formik";
@@ -47,7 +47,7 @@ function Login() {
   };
 
   return (
-    <MotionMain variants={fadeIn} initial="hidden" animate="visible">
+    <MotionMain variants={zoomIn} initial="hidden" animate="visible">
       <div className="flex min-h-screen flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img

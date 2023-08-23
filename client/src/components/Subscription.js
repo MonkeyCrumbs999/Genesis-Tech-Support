@@ -1,10 +1,10 @@
 import React from "react";
-import { MotionMain, fadeIn } from "./animations/sharedAnimations"; // Adjust the path if necessary
+import { MotionMain, zoomIn } from "./animations/sharedAnimations"; // Adjust the path if necessary
 
 function Subscription() {
   return (
     <MotionMain
-      variants={fadeIn}
+      variants={zoomIn}
       initial="hidden"
       animate="visible"
       exit="exit"
