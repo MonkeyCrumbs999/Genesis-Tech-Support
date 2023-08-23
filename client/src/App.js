@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import MobileSidebar from "./components/MobileSidebar";
@@ -28,16 +28,16 @@ function ScrollToTop() {
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleMenu = useCallback(() => {
+    setIsOpen(prevIsOpen => !prevIsOpen);
+  }, []);
 
   useEffect(() => {
-    function handleResize() {
+    const handleResize = () => {
       if (window.innerWidth > 768 && isOpen) {
         setIsOpen(false);
       }
-    }
+    };
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);

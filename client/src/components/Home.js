@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import HeroImage from "../assets/img/hero.webp";
 import { MotionMain, fadeIn } from "./animations/sharedAnimations";
@@ -7,11 +7,6 @@ import "../App.css";
 
 const MotionLink = motion(RouterLink);
 
-const isFirefox = typeof InstallTrigger !== "undefined";
-const supportsBackdropFilter = CSS.supports("backdrop-filter", "blur(1px)");
-const blurClass = supportsBackdropFilter ? "backdrop-blur-lg" : "blur-effect";
-const bgOpacityClass = isFirefox ? "" : "bg-opacity-10";
-const bgColorClass = isFirefox ? "bg-genesis-blue" : "bg-white";
 
 function ServiceItem({ title, children }) {
   return (
@@ -23,14 +18,19 @@ function ServiceItem({ title, children }) {
 }
 
 function Home() {
+  const isFirefox = useMemo(() => typeof InstallTrigger !== "undefined", []);
+  const supportsBackdropFilter = useMemo(() => CSS.supports("backdrop-filter", "blur(1px)"), []);
+  const blurClass = useMemo(() => supportsBackdropFilter ? "backdrop-blur-lg" : "blur-effect", [supportsBackdropFilter]);
+  const bgOpacityClass = useMemo(() => isFirefox ? "" : "bg-opacity-10", [isFirefox]);
+  const bgColorClass = useMemo(() => isFirefox ? "bg-genesis-blue" : "bg-white", [isFirefox]);
   return (
     <MotionMain variants={fadeIn} initial="hidden" animate="visible">
       <main>
         <section
           className={`relative flex items-center justify-center bg-center pb-[50px] drop-shadow-md shadow-inset-bottom sm:bg-right h-[450px] md:h-[550px] lg:h-[600px] ${blurClass}`}
-          style={{
+          style={useMemo(() => ({
             backgroundImage: `url(${HeroImage})`,
-          }}>
+          }), [])}>
           <div
             className={`${bgColorClass} ${bgOpacityClass} backdrop-blur-lg rounded-xl shadow-inner mt-[115px] p-6 text-center text-white px-6 border-[1px] border-white drop-shadow-xl backdrop-brightness-75 ml-4 mr-4`}
             id="hero-box">
