@@ -45,7 +45,7 @@ export default function App() {
   }
 
   return (
-    <div className="zoomIn">
+    <div className="fadeIn">
     <AuthProvider>
       <Router>
         <ScrollProgressBar />
