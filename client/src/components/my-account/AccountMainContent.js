@@ -1,8 +1,9 @@
 import React from "react";
 
-function AccountMainContent({ user }) {
+
+
+function AccountMainContent({ user, renderTuneupSection }) {
   return (
-    // main container
     <div className="w-full col-span-2 flex flex-col items-start justify-start sm:items-center">
       <h2 className="text-4xl text-center lg:text-start font-bold">
         Welcome to your Profile, {user.username}!
@@ -18,6 +19,12 @@ function AccountMainContent({ user }) {
           <h2 className="text-3xl font-semibold">Your Previous Appointments</h2>
           <p className="mt-2 text-sm text-gray-600">
             No previous appointments found.
+          </p>
+        </div>
+        <div className="mt-10">
+          <h2 className="text-3xl font-semibold">Tuneup Status</h2>
+          <p className="mt-2 text-sm text-gray-600">
+            {renderTuneupSection()}
           </p>
         </div>
       </div>

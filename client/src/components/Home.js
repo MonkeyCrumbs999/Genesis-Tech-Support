@@ -1,24 +1,28 @@
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import HeroImage from "../assets/img/hero.png";
-import { MotionMain } from "./animations/sharedAnimations";
+import { MotionMain, fadeIn } from "./animations/sharedAnimations";
 import { motion } from "framer-motion";
 import "../App.css";
 
-export const fadeIn = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 },
-};
-
 const MotionLink = motion(RouterLink);
 
-function Home() {
-  const isFirefox = typeof InstallTrigger !== "undefined";
-  const supportsBackdropFilter = CSS.supports("backdrop-filter", "blur(1px)");
-  const blurClass = supportsBackdropFilter ? "backdrop-blur-lg" : "blur-effect";
-  const bgOpacityClass = isFirefox ? "" : "bg-opacity-10";
-  const bgColorClass = isFirefox ? "bg-genesis-blue" : "bg-white";
+const isFirefox = typeof InstallTrigger !== "undefined";
+const supportsBackdropFilter = CSS.supports("backdrop-filter", "blur(1px)");
+const blurClass = supportsBackdropFilter ? "backdrop-blur-lg" : "blur-effect";
+const bgOpacityClass = isFirefox ? "" : "bg-opacity-10";
+const bgColorClass = isFirefox ? "bg-genesis-blue" : "bg-white";
 
+function ServiceItem({ title, children }) {
+  return (
+    <div className="text-center">
+      <h3 className="text-2xl mb-4">{title}</h3>
+      <p>{children}</p>
+    </div>
+  );
+}
+
+function Home() {
   return (
     <MotionMain variants={fadeIn} initial="hidden" animate="visible">
       <main>
@@ -36,15 +40,14 @@ function Home() {
               genesis
             </h2>
             <h2
-              className="text-4xl mb-4 lowercase  drop-shadow-md"
+              className="text-4xl mb-4 lowercase drop-shadow-md"
               id="tech-install-h2">
               Tech Install/Support
             </h2>
             <p className="text-xl md:text-2xl font-light mb-8 drop-shadow-2xl">
-              Your one-stop solution for all your tech needs.<br></br>Servicing
+              Your one-stop solution for all your tech needs.<br />Servicing
               Medford, OR.
             </p>
-
             <MotionLink
               whileHover={{ scale: 1.2 }}
               transition={{ type: "spring", stiffness: 500, damping: 20 }}
@@ -56,9 +59,7 @@ function Home() {
         </section>
         <section className="bg-white py-10">
           <div className="container mx-auto px-8">
-            <h2 className="text-3xl font-oswald text-center mb-8">
-              Our Services
-            </h2>
+            <h2 className="text-3xl font-oswald text-center mb-8">Our Services</h2>
             <div className="max-w-xl mx-auto">
               <p className="text-lg text-center mb-8">
                 Whether it's one-on-one tech education, or mounting and
@@ -70,36 +71,22 @@ function Home() {
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-              <div className="text-center">
-                <h3 className="text-2xl mb-4 ">One-On-One Tech Education</h3>
-                <p>
-                  We provide personalized tech education to empower you to use
-                  your devices effectively and with confidence.
-                </p>
-              </div>
-              <div className="text-center">
-                <h3 className="text-2xl mb-4 ">TV Mounting & Setup</h3>
-                <p>
-                  From unboxing your new smart TV to mounting it and setting it
-                  up with your devices, we've got you covered.
-                </p>
-              </div>
-              <div className="text-center">
-                <h3 className="text-2xl mb-4 ">
-                  PC & Mac Software Troubleshooting
-                </h3>
-                <p>
-                  We help solve software issues on your PC or Mac to ensure your
-                  system runs smoothly.
-                </p>
-              </div>
-              <div className="text-center">
-                <h3 className="text-2xl mb-4 ">In-Home Tech Support</h3>
-                <p>
-                  With our in-home tech support service, you can enjoy a
-                  convenient, hands-off solution to all your tech problems.
-                </p>
-              </div>
+              <ServiceItem title="One-On-One Tech Education">
+                We provide personalized tech education to empower you to use
+                your devices effectively and with confidence.
+              </ServiceItem>
+              <ServiceItem title="TV Mounting & Setup">
+                From unboxing your new smart TV to mounting it and setting it
+                up with your devices, we've got you covered.
+              </ServiceItem>
+              <ServiceItem title="PC & Mac Software Troubleshooting">
+                We help solve software issues on your PC or Mac to ensure your
+                system runs smoothly.
+              </ServiceItem>
+              <ServiceItem title="In-Home Tech Support">
+                With our in-home tech support service, you can enjoy a
+                convenient, hands-off solution to all your tech problems.
+              </ServiceItem>
             </div>
           </div>
         </section>

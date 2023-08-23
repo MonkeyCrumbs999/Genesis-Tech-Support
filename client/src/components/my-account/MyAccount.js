@@ -85,11 +85,11 @@ function MyAccount() {
         expandHome={expandHome}
         handleExpandHome={handleExpandHome}
       />
-      <AccountMainContent
-        user={user}
-        renderTuneupSection={renderTuneupSection}
-        tuneupDifference={tuneupDifference}
-      />
+     <AccountMainContent
+  user={user}
+  renderTuneupSection={renderTuneupSection}
+  tuneupDifference={tuneupDifference}
+/>
       <Chatbot />
     </motion.div>
   );

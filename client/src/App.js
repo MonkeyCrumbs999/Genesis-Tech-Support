@@ -12,6 +12,13 @@ function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    // Detect Microsoft Edge
+    const isEdge = window.navigator.userAgent.indexOf("Edg") > -1;
+
+    if (isEdge && 'scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
     window.scrollTo(0, 0);
   }, [pathname]);
 

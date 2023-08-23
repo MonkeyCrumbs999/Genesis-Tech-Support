@@ -1,3 +1,4 @@
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -13,6 +14,7 @@ import TVMounting from "./components/services/TVMounting";
 import TechEducation from "./components/services/TechEducation";
 import SoftwareTroubleshooting from "./components/services/SoftwareTroubleshooting";
 import InHomeSupport from "./components/services/InHomeSupport";
+import NotFound from "./components/NotFound"; // Import the NotFound component
 
 export default function AppRoutes() {
   return (
@@ -49,6 +51,9 @@ export default function AppRoutes() {
           </ProtectedRoute>
         }
       />
+      
+      {/* Catch-all route for 404 */}
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

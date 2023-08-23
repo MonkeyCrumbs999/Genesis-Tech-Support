@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { HiChevronDown } from "react-icons/hi";
+import { FaHome } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
 function AccountNavigation() {
@@ -37,7 +38,7 @@ function AccountNavigation() {
           items={["Info 1", "Info 2"]}
         />
         <ExpandableSection
-          title="My Home"
+          title={<> My Home<FaHome className="ml-2" /></>}
           expanded={expandHome}
           onExpand={handleExpandHome}
           items={["Home 1", "Home 2"]}
@@ -65,13 +66,19 @@ const ExpandableSection = ({ title, expanded, onExpand, items }) => (
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
           transition={{
-            opacity: { duration: 0.1 }, // Quicker fade
+            opacity: { duration: 0.1 },
             height: { duration: 0.3 },
           }}>
           {items.map((item, index) => (
-            <li key={index} className="pt-6 text-sm">
+            <motion.li
+              key={index}
+              className="pt-6 text-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}>
               {item}
-            </li>
+            </motion.li>
           ))}
         </motion.ul>
       )}

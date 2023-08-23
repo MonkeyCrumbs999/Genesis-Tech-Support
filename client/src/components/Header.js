@@ -125,7 +125,7 @@ function Header({ isOpen, toggleMenu }) {
                   My Account
                 </Link>
                 <div
-                  className="absolute top-full left-0 mt-6 transform rounded-lg shadow-lg"
+                  className="absolute top-full left-0 mt-4 transform rounded-lg shadow-lg"
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}>
                   <AnimatePresence>
@@ -137,7 +137,7 @@ function Header({ isOpen, toggleMenu }) {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute top-full left-0 py-4 px-4 text-xs text-white text-left bg-genesis-orange hover:bg-orange-600 transition duration-200 ease-in-out transform rounded-lg shadow-lg w-32">
+                        className="absolute top-full left-0 py-3 px-4 text-xs text-white text-left bg-genesis-orange hover:bg-orange-600 transition duration-200 ease-in-out transform rounded-lg shadow-lg lg:py-4 lg:px-4 lg:w-32">
                         Logout
                       </motion.button>
                     )}
