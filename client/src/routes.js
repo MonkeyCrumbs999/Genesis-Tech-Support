@@ -8,7 +8,7 @@ import ContactUs from "./components/ContactUs";
 import Services from "./components/Services";
 import Login from "./components/registration/Login";
 import Register from "./components/registration/Register";
-import MyAccount from "./components/MyAccount";
+import MyAccount from "./components/my-account/MyAccount";
 import TVMounting from "./components/services/TVMounting";
 import TechEducation from "./components/services/TechEducation";
 import SoftwareTroubleshooting from "./components/services/SoftwareTroubleshooting";
