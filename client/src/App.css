@@ -47,3 +47,18 @@
   filter: blur(10px);
   z-index: -1;
 }
+
+.zoomIn {
+  animation: zoomIn 0.5s;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
