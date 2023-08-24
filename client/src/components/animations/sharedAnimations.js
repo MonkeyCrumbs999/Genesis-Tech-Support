@@ -7,7 +7,7 @@ export const fadeIn = {
   visible: {
     opacity: 1,
     transition: {
-      duration: .3,
+      duration: .2,
       ease: "easeInOut",
     },
   },

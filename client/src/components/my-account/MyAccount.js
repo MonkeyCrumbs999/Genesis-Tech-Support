@@ -68,7 +68,7 @@ function MyAccount() {
 
   return (
     <motion.div
-    className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-start p-4 sm:p-6 md:p-8 lg:p-12 pt-28 sm:pt-24 md:pt-28 lg:pt-32 gap-4 sm:gap-6 md:gap-8 lg:gap-24 xl:gap-32"
+    className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-start p-4 sm:p-6 md:p-8 lg:p-12 pt-28 sm:pt-24 md:pt-28 lg:pt-32 gap-8 sm:gap-6 md:gap-8 lg:gap-24 xl:gap-32"
     variants={{
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { delay: 0.5 } },

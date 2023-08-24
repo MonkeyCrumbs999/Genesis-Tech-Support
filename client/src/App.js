@@ -7,11 +7,9 @@ import ScrollProgressBar from "./components/ScrollProgressBar";
 import { AuthProvider } from "./contexts/AuthContext";
 import AppRoutes from "./routes";
 import "./App.css";
-import CircularProgress from "@mui/material/CircularProgress";
 
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   const toggleMenu = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
@@ -27,22 +25,6 @@ export default function App() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [isOpen]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 500); // You can adjust the loading time as per your needs
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <CircularProgress />
-      </div>
-    );
-  }
 
   return (
     <div className="fadeIn">

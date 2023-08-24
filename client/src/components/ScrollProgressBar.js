@@ -13,6 +13,9 @@ const ScrollProgressBar = () => {
     height: "4px",
     backgroundColor: "#ff6f3d",
     zIndex: 9999,
+    // Add Webkit specific styles for smoother scrolling on Safari
+    WebkitOverflowScrolling: "touch",
+    WebkitTransform: "translate3d(0,0,0)",
   }), [barWidth]);
 
   return (
