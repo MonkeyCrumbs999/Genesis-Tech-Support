@@ -2,16 +2,13 @@ import { motion } from "framer-motion";
 
 export const MotionMain = motion.main;
 
-export const zoomIn = {
-  hidden: { scale: 0.9 },
+export const fadeIn = {
+  hidden: { opacity: 0 },
   visible: {
-    scale: 1,
+    opacity: 1,
     transition: {
-      duration: 0.5,
-      when: "beforeChildren",
-      staggerChildren: 0.3,
+      duration: .3,
       ease: "easeInOut",
-      staggerDirection: 1,
     },
   },
 };

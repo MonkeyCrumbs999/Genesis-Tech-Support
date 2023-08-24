@@ -1,11 +1,11 @@
 // Services.js
 import React from "react";
 import ServiceCard from "../components/ServiceCard";
-import { MotionMain, zoomIn } from "./animations/sharedAnimations";
+import { MotionMain, fadeIn } from "./animations/sharedAnimations";
 
 function Services() {
   return (
-    <MotionMain variants={zoomIn} initial="hidden" animate="visible">
+    <MotionMain variants={fadeIn} initial="hidden" animate="visible">
       <main className="py-20">
         <div className="container mx-auto px-8 py-10">
           <h1 className="text-4xl text-center mb-8 font-oswald">

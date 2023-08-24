@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Logo from "../../assets/img/genesis-black.png";
-import { MotionMain, zoomIn } from "../animations/sharedAnimations";
+import { MotionMain, fadeIn } from "../animations/sharedAnimations";
 import RegisterForm from "./RegisterForm";
 import { AuthContext } from "../../contexts/AuthContext";
 
@@ -58,7 +58,7 @@ function Register() {
   };
 
   return (
-    <MotionMain variants={zoomIn} initial="hidden" animate="visible">
+    <MotionMain variants={fadeIn} initial="hidden" animate="visible">
       <div className="flex min-h-screen flex-col justify-center px-6 py-28 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
