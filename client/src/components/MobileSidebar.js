@@ -53,7 +53,7 @@ function MobileSidebar({ isOpen, toggleMenu }) {
   }, [isOpen, toggleMenu]);
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {isOpen && (
         <motion.nav
           ref={sidebarRef} // Attach the ref to the sidebar
