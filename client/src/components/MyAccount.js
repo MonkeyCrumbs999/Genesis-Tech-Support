@@ -95,7 +95,7 @@ function MyAccount() {
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 transition={{ ease: "easeInOut", duration: 0.3 }}>
-                <li className="pt-6 text-sm">Upcoming Appointments</li>
+                <li className="pt-2 text-sm">Upcoming Appointments</li>
                 <li className="text-sm">Previous Appointments</li>
               </motion.ul>
             )}
@@ -117,7 +117,7 @@ function MyAccount() {
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 transition={{ ease: "easeInOut", duration: 0.3 }}>
-                <li className="pt-6 text-sm">Guide 1</li>
+                <li className="pt-2 text-sm">Guide 1</li>
                 <li className="text-sm">Guide 2</li>
               </motion.ul>
             )}
@@ -139,7 +139,7 @@ function MyAccount() {
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 transition={{ ease: "easeInOut", duration: 0.3 }}>
-                <li className="pt-6 text-sm">Info 1</li>
+                <li className="pt-2 text-sm">Info 1</li>
                 <li className="text-sm">Info 2</li>
               </motion.ul>
             )}
@@ -161,7 +161,7 @@ function MyAccount() {
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 transition={{ ease: "easeInOut", duration: 0.3 }}>
-                <li className="pt-6 text-sm">Home 1</li>
+                <li className="pt-2 text-sm">Home 1</li>
                 <li className="text-sm">Home 2</li>
               </motion.ul>
             )}

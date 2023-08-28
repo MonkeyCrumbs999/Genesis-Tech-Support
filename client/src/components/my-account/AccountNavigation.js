@@ -58,25 +58,30 @@ const ExpandableSection = ({ title, expanded, onExpand, items }) => (
         }`}
       />
     </div>
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {expanded && (
         <motion.ul
-          className={`space-y-8 pl-8`}
+          className={`space-y-2 pl-8`}
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
           transition={{
-            opacity: { duration: 0.1 },
-            height: { duration: 0.3 },
-          }}>
+            opacity: { duration: 0.2 },
+            height: { duration: 0.4 },
+          }}
+        >
           {items.map((item, index) => (
             <motion.li
               key={index}
               className="pt-6 text-sm"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}>
+              initial={{ opacity: 0, x: 10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -10 }}
+              transition={{
+                duration: 0.2,
+                delay: expanded ? 0.1 * index : 0.1 * (items.length - 1 - index), // cascade effect
+              }}
+            >
               {item}
             </motion.li>
           ))}
