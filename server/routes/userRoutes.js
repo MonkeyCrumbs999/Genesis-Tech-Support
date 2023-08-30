@@ -26,16 +26,31 @@ const loginSchema = Joi.object({
   password: Joi.string().min(3).max(30).required(),
 });
 
+// Check if email already exists
+router.post("/checkEmail", async (req, res) => {
+  const existingUser = await User.findOne({ email: req.body.email });
+  if (existingUser) {
+    res.json({ exists: true });
+  } else {
+    res.json({ exists: false });
+  }
+});
+
+// Check if username already exists
+router.post("/checkUsername", async (req, res) => {
+  const existingUser = await User.findOne({ username: req.body.username });
+  if (existingUser) {
+    res.json({ exists: true });
+  } else {
+    res.json({ exists: false });
+  }
+});
+
+// Register user
 router.post("/register", async (req, res) => {
   const { error } = registerSchema.validate(req.body);
   if (error) {
     return res.status(400).send(error.details[0].message);
-  }
-
-  // Check if email already exists
-  const existingUser = await User.findOne({ email: req.body.email });
-  if (existingUser) {
-    return res.status(400).send("Email already exists");
   }
 
   try {
@@ -54,63 +69,32 @@ router.post("/register", async (req, res) => {
 
     User.register(newUser, req.body.password, (err, user) => {
       if (err) {
-        console.error(err);
         return res.status(500).send("Error registering");
       }
-      passport.authenticate("local", (err) => {
-        if (err) {
-          console.error(err);
-          return res
-            .status(500)
-            .send("Error authenticating after registration");
-        }
-        res
-          .status(200)
-          .json({ user: { username: user.username, email: user.email } });
-      })(req, res);
+      passport.authenticate("local")(req, res, () => {
+        res.status(200).json({ user: { username: user.username, email: user.email } });
+      });
     });
   } catch (error) {
-    console.error(error);
     res.status(500).send("Error registering");
   }
 });
 
-router.post(
-  "/login",
-  (req, res, next) => {
-    const { error } = loginSchema.validate(req.body);
-    if (error) {
-      return res.status(400).send(error.details[0].message);
-    }
-    next();
-  },
-  async (req, res, next) => {
-    const user = await User.findOne({ username: req.body.username });
-    if (!user) {
-      return res.status(400).send("User does not exist");
-    }
-    next();
-  },
-  passport.authenticate("local"),
-  (req, res) => {
-    res
-      .status(200)
-      .json({ user: { username: req.user.username, email: req.user.email } });
+// Login
+router.post("/login", (req, res, next) => {
+  const { error } = loginSchema.validate(req.body);
+  if (error) {
+    return res.status(400).send(error.details[0].message);
   }
-);
-
-router.get("/logout", (req, res) => {
-  req.logout((error) => {
-    if (error) {
-      // handle the error condition
-      console.log(error);
-      res.status(500).send("Server error during logout"); // you can customize your own error message
-    } else {
-      // If there's no error during logout, clear the session and cookie
-      req.session = null;
-      res.clearCookie("connect.sid");
-      res.status(200).send("Successfully Logged Out!");
-    }
-  });
+  next();
+}, passport.authenticate("local"), (req, res) => {
+  res.status(200).json({ user: { username: req.user.username, email: req.user.email } });
 });
+
+// Logout
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.status(200).send("Successfully Logged Out!");
+});
+
 module.exports = router;

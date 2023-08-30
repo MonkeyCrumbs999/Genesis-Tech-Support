@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
+const cors = require('cors');
 const { MONGODB_URI, SESSION_SECRET, PORT } = require("./config");
 const passport = require("./auth");
 const userRoutes = require("./routes/userRoutes");
@@ -19,34 +20,22 @@ store.on("error", function (error) {
 
 app.set("trust proxy", 1);
 
-app.use((req, res, next) => {
-  const allowedOrigins = {
-    production: process.env.CORS_ORIGIN_PRODUCTION,
-    development: process.env.CORS_ORIGIN_DEVELOPMENT,
-  };
-  const origin = req.headers.origin;
-  if (origin === allowedOrigins[process.env.NODE_ENV]) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
-  res.header("Access-Control-Allow-Credentials", true);
-  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+// Use cors package for handling CORS
+app.use(cors({
+  origin: process.env.CORS_ORIGIN_DEVELOPMENT, // Replace with your frontend application's URL
+  credentials: true // Allows cookies to be sent
+}));
 
 app.use(
   session({
     secret: SESSION_SECRET,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24, // 1 day
-      secure: true, // set this to true in production
-      httpOnly: true, // The cookie is not accessible via client side script
-      sameSite: "none", // The cookie cannot be accessed by other sites
+      secure: true, 
+      httpOnly: true, 
+      sameSite: "none", 
     },
-    store: store, // using MongoDB session store
+    store: store,
     resave: false,
     saveUninitialized: false,
   })

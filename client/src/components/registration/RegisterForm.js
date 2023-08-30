@@ -2,13 +2,37 @@ import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import FormField from "./FormField";
+import axios from 'axios';
 
-// Define a validation schema with Yup
+const BASE_URL = window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://genesis-tech-support-2159e5e25391.herokuapp.com";
+
 const validationSchema = Yup.object().shape({
   username: Yup.string()
     .min(3, "Must be at least 3 characters")
-    .required("Required"),
-  email: Yup.string().email("Invalid email format").required("Required"),
+    .required("Required")
+    .test("username", "Username already exists", async (value) => {
+      try {
+        const response = await axios.post(`${BASE_URL}/user/checkUsername`, { username: value }, { withCredentials: true});
+        return !response.data.exists;
+      } catch (error) {
+        console.error(error);
+        return false;
+      }
+    }),
+  email: Yup.string()
+    .email("Invalid email format")
+    .required("Required")
+    .test("email", "Email already exists", async (value) => {
+      try {
+        const response = await axios.post(`${BASE_URL}/user/checkEmail`, { email: value }, {withCredentials: true});
+        return !response.data.exists;
+      } catch (error) {
+        console.error(error);
+        return false;
+      }
+    }),
   password: Yup.string()
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]|.*[!@#$%^&*()\-_=+{};:,<.>]).{6,}$/,
@@ -39,7 +63,6 @@ const validationSchema = Yup.object().shape({
 });
 
 function RegisterForm({ onSubmit }) {
-  // Initial form values
   const initialValues = {
     username: "",
     email: "",
