@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Logo from "../../assets/img/genesis-black.png";
 import { MotionMain, fadeIn } from "../animations/sharedAnimations";
 import { AuthContext } from "../../contexts/AuthContext";
 import Alert from "../login-errors/Alert"; // Import the Alert component
-import { Formik, Form } from "formik";
+import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import FormField from "./FormField";
 
@@ -27,14 +27,13 @@ const validationSchema = Yup.object().shape({
 function Login() {
   const authContext = useContext(AuthContext);
   const navigate = useNavigate();
+  const [stayLoggedIn, setStayLoggedIn] = useState(false); // Modify this line
 
   const handleSubmit = async (values) => {
     authContext.resetError(); // Reset the error state before login attempt
 
-    const loginSuccessful = await authContext.login(
-      values.username,
-      values.password
-    );
+    // Modify the below line
+    const loginSuccessful = await authContext.login(values.username, values.password, stayLoggedIn);
     if (loginSuccessful) {
       navigate("/my-account");
     }
@@ -64,12 +63,24 @@ function Login() {
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={handleSubmit}>
+            onSubmit={handleSubmit}
+          >
             {() => (
               <Form className="space-y-6">
                 <FormField name="username" label="Username" type="text" />
                 <FormField name="password" label="Password" type="password" />
-
+                <div className="flex items-center">
+                  <Field
+                    type="checkbox"
+                    id="stayLoggedIn"
+                    name="stayLoggedIn"
+                    checked={stayLoggedIn}
+                    onChange={() => setStayLoggedIn(!stayLoggedIn)}
+                  />
+                  <label htmlFor="stayLoggedIn" className="ml-2">
+                    Stay Logged In
+                  </label>
+                </div>
                 <div>
                   {authContext.error && (
                     <Alert message={authContext.error} type="error" />
@@ -79,7 +90,8 @@ function Login() {
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.1 }}
                     type="submit"
-                    className="flex w-full justify-center rounded-md bg-genesis-blue px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-genesis-blue-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-genesis-blue">
+                    className="flex w-full justify-center rounded-md bg-genesis-blue px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-genesis-blue-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-genesis-blue"
+                  >
                     Sign in
                   </motion.button>
                 </div>
@@ -93,7 +105,8 @@ function Login() {
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.1 }}
               className="font-semibold leading-6 text-genesis-blue hover:text-cyan-600"
-              to="/register">
+              to="/register"
+            >
               Register
             </MotionLink>
           </p>

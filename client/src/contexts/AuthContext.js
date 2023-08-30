@@ -13,8 +13,8 @@ export const AuthProvider = ({ children }) => {
 
   const [error, setError] = useState(null);
 
-  const loginCallback = async (username, password) => {
-    const result = await login(username, password, setUser, setError);
+  const loginCallback = async (username, password, stayLoggedIn) => {
+    const result = await login(username, password, setUser, setError, stayLoggedIn);
     return result !== false; // return the result of the login attempt
   };
 
