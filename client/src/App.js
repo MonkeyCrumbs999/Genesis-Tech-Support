@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import MobileSidebar from "./components/MobileSidebar";
 import Footer from "./components/Footer";
 import ScrollProgressBar from "./components/ScrollProgressBar";
+import ScrollToTop from "./ScrollToTop";  // <-- Import here
 import { AuthProvider } from "./contexts/AuthContext";
 import AppRoutes from "./routes";
 import "./App.css";
@@ -28,22 +29,23 @@ export default function App() {
 
   return (
     <div className="fadeIn">
-    <AuthProvider>
-      <Router>
-        <ScrollProgressBar />
-        <Header toggleMenu={toggleMenu} />
-        <div
-          className={`fixed inset-0 bg-black transition-opacity duration-300 ease-in-out z-50 ${
-            isOpen
-              ? "opacity-50 pointer-events-auto"
-              : "opacity-0 pointer-events-none"
-          }`}></div>
-
-        <MobileSidebar isOpen={isOpen} toggleMenu={toggleMenu} />
-        <AppRoutes />
-        <Footer />
-      </Router>
-    </AuthProvider>
+      <AuthProvider>
+        <Router>
+          <ScrollToTop />  {/* <-- Include here */}
+          <ScrollProgressBar />
+          <Header toggleMenu={toggleMenu} />
+          <div
+            className={`fixed inset-0 bg-black transition-opacity duration-300 ease-in-out z-50 ${
+              isOpen
+                ? "opacity-50 pointer-events-auto"
+                : "opacity-0 pointer-events-none"
+            }`}
+          ></div>
+          <MobileSidebar isOpen={isOpen} toggleMenu={toggleMenu} />
+          <AppRoutes />
+          <Footer />
+        </Router>
+      </AuthProvider>
     </div>
   );
 }
