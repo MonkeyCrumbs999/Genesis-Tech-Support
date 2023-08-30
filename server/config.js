@@ -5,6 +5,7 @@ const MONGODB_URI =
   NODE_ENV === "production"
     ? process.env.MONGODB_URI_PRODUCTION
     : process.env.MONGODB_URI_DEVELOPMENT;
+
 const CORS_ORIGIN =
   NODE_ENV === "production"
     ? process.env.CORS_ORIGIN_PRODUCTION

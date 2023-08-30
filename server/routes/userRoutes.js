@@ -93,8 +93,13 @@ router.post("/login", (req, res, next) => {
 
 // Logout
 router.get("/logout", (req, res) => {
-  req.logout();
-  res.status(200).send("Successfully Logged Out!");
+  req.logout((err) => {
+    if (err) {
+      return res.status(500).json({ message: "Could not log out, please try again." });
+    }
+    res.status(200).send("Successfully Logged Out!");
+  });
 });
+
 
 module.exports = router;
