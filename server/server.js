@@ -24,11 +24,13 @@ app.use(cors({
   credentials: true,
 }));
 
+app.use(express.json());
+
 app.use(
   session({
     secret: SESSION_SECRET,
     cookie: {
-      maxAge: 1000 * 60 * 60 * 24, // 1 day
+      maxAge: 1000 * 60 * 60 * 24, // 1 day by default
       secure: true,
       httpOnly: true,
       sameSite: "none",
@@ -39,10 +41,14 @@ app.use(
   })
 );
 
+app.use((req, res, next) => {
+  if (req.body.rememberMe) req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 30; // 30 days
+  else req.session.cookie.expires = false; // Expires at end of session
+  next();
+});
+
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use(express.json());
 
 connectDB()
   .then(() => {

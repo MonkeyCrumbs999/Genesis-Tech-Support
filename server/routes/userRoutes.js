@@ -24,6 +24,7 @@ const registerSchema = Joi.object({
 const loginSchema = Joi.object({
   username: Joi.string().alphanum().min(3).max(30).required(),
   password: Joi.string().min(3).max(30).required(),
+  rememberMe: Joi.boolean(),
 });
 
 // Check if email already exists
@@ -88,6 +89,8 @@ router.post("/login", (req, res, next) => {
   }
   next();
 }, passport.authenticate("local"), (req, res) => {
+  if (req.body.rememberMe) req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 30; // 30 days
+  else req.session.cookie.expires = false; // Expires at end of session
   res.status(200).json({ user: { username: req.user.username, email: req.user.email } });
 });
 
