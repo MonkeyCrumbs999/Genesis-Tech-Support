@@ -24,7 +24,7 @@ function Home() {
   const bgOpacityClass = useMemo(() => isFirefox ? "" : "bg-opacity-10", [isFirefox]);
   const bgColorClass = useMemo(() => isFirefox ? "bg-genesis-blue" : "bg-white", [isFirefox]);
   return (
-    <MotionMain initial="hidden" animate="visible">
+    <MotionMain>
       <main>
         <section
           className={`relative flex items-center justify-center bg-center pb-[50px] drop-shadow-md shadow-inset-bottom sm:bg-right h-[450px] md:h-[550px] lg:h-[600px] ${blurClass}`}
