@@ -35,6 +35,7 @@ function Login() {
     // Modify the below line
     const loginSuccessful = await authContext.login(values.username, values.password, stayLoggedIn);
     if (loginSuccessful) {
+      
       navigate("/my-account");
     }
   };

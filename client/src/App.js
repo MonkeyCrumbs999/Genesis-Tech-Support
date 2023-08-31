@@ -28,7 +28,7 @@ export default function App() {
   }, [isOpen]);
 
   return (
-    <div className="fadeIn">
+  
       <AuthProvider>
         <Router>
           <ScrollToTop />  {/* <-- Include here */}
@@ -46,6 +46,5 @@ export default function App() {
           <Footer />
         </Router>
       </AuthProvider>
-    </div>
   );
 }
