@@ -51,7 +51,7 @@ function Appointment() {
                   </div>
                 )}
                 <button
-                  className="absolute top-1 right-5 md:top-[-2rem] md:right-[-2rem] w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-red-600 text-white focus:outline-none focus:ring focus:ring-offset-2 focus:ring-black"
+                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-red-600 text-white focus:outline-none focus:ring focus:ring-offset-2 focus:ring-black"
                   onClick={() => setShowModal(false)}
                 >
                   X
