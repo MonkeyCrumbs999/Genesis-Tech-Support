@@ -7,7 +7,10 @@ import { AuthContext } from "../contexts/AuthContext";
 function NavLink({ to, label, onClick }) {
   return (
     <li className="mx-2 my-4">
-      <Link to={to} onClick={onClick}>
+      <Link
+        to={to}
+        onClick={onClick}
+        className="hover:text-genesis-orange transition ease-in-out duration-500">
         {label}
       </Link>
     </li>
@@ -33,7 +36,6 @@ function MobileSidebar({ isOpen, toggleMenu }) {
 
   useEffect(() => {
     function handleClickOutside(event) {
-      // If sidebar is open and click was outside of the sidebar, then close it
       if (
         isOpen &&
         sidebarRef.current &&
@@ -43,10 +45,8 @@ function MobileSidebar({ isOpen, toggleMenu }) {
       }
     }
 
-    // Attach the listener to the document
     document.addEventListener("mousedown", handleClickOutside);
 
-    // Clean up the listener when the component unmounts
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -56,7 +56,7 @@ function MobileSidebar({ isOpen, toggleMenu }) {
     <AnimatePresence mode="wait">
       {isOpen && (
         <motion.nav
-          ref={sidebarRef} // Attach the ref to the sidebar
+          ref={sidebarRef}
           initial="closed"
           animate={isOpen ? "open" : "closed"}
           exit="closed"
@@ -80,11 +80,7 @@ function MobileSidebar({ isOpen, toggleMenu }) {
             <NavLink to="/contact-us" label="Contact Us" onClick={toggleMenu} />
             {user ? (
               <>
-                <NavLink
-                  to="/my-account"
-                  label="My Account"
-                  onClick={toggleMenu}
-                />
+                <NavLink to="/my-account" label="My Account" onClick={toggleMenu} />
                 <li className="mx-2 my-4 text-sm">
                   <button onClick={handleLogout}>Logout</button>
                 </li>

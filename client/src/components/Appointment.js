@@ -14,7 +14,7 @@ function Appointment() {
   };
 
   return (
-    <MotionMain variants={fadeIn} initial="hidden" animate="visible">
+    <MotionMain variants={fadeIn} initial="hidden" animate="visible" className="mb-48">
       <main className="pt-28 p-4">
         <h2 className="text-4xl text-center mb-4">Schedule an Appointment</h2>
         <p className="text-center mb-4">
