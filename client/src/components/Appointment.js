@@ -22,7 +22,7 @@ function Appointment() {
 
   return (
     <MotionMain variants={fadeIn} initial="hidden" animate="visible">
-      <main className="pt-[10rem] p-4 min-h-[50vh]">
+      <main className="py-28 p-4">
         <h2 className="text-4xl text-center mb-4">Schedule an Appointment</h2>
         <p className="text-center mb-4">
           Use the booking interface provided by Square below to schedule your appointment.
