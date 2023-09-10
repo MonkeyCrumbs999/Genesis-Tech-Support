@@ -6,6 +6,17 @@ import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { motion, AnimatePresence } from "framer-motion";
 
+// Custom debounce function
+const debounce = (func, delay) => {
+  let debounceTimer;
+  return function() {
+    const context = this;
+    const args = arguments;
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => func.apply(context, args), delay);
+  };
+};
+
 function Header({ isOpen, toggleMenu }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const { user, logout } = useContext(AuthContext);
@@ -22,20 +33,20 @@ function Header({ isOpen, toggleMenu }) {
     setIsScrolled(window.pageYOffset > 50);
   };
 
-  const handleMouseEnter = () => {
-    clearTimeout(timeoutId.current); // Clear timeout on mouse enter
+  const handleMouseEnter = debounce(() => {
+    clearTimeout(timeoutId.current);
     setIsAccountHovered(true);
-  };
+  }, 300);
 
-  const handleMouseLeave = () => {
-    timeoutId.current = setTimeout(() => setIsAccountHovered(false), 1500); // Set timeout to 1.5 seconds
-  };
+  const handleMouseLeave = debounce(() => {
+    timeoutId.current = setTimeout(() => setIsAccountHovered(false), 1500);
+  }, 300);
 
   useEffect(() => {
     window.addEventListener("scroll", checkScroll);
     return () => {
       window.removeEventListener("scroll", checkScroll);
-      clearTimeout(timeoutId.current); // Clear timeout on component unmount
+      clearTimeout(timeoutId.current);
     };
   }, []);
 
