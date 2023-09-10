@@ -4,7 +4,7 @@ import React from "react";
 
 function AccountMainContent({ user, renderTuneupSection }) {
   return (
-    <div className="w-full col-span-2 flex flex-col items-start justify-start sm:items-center">
+    <div className="w-full col-span-5 flex flex-col items-start justify-start sm:items-center">
       <h2 className="text-4xl text-center lg:text-start font-bold">
         Welcome to your Profile, {user.username}!
       </h2>

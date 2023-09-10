@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import { HiChevronDown } from "react-icons/hi";
+import { HiChevronDown, HiX } from "react-icons/hi";
 import { FaHome } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import { Drawer, Button } from "@mui/material";
+import { Menu } from "@mui/icons-material";
 
 function AccountNavigation() {
   const [expandAppointments, setExpandAppointments] = useState(false);
   const [expandGuides, setExpandGuides] = useState(false);
   const [expandInfo, setExpandInfo] = useState(false);
   const [expandHome, setExpandHome] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const handleExpandAppointments = () =>
     setExpandAppointments(!expandAppointments);
@@ -16,34 +19,88 @@ function AccountNavigation() {
   const handleExpandHome = () => setExpandHome(!expandHome);
 
   return (
-    <div className="w-full bg-gray-100 border border-gray-200 shadow-md rounded-lg flex flex-col min-h-full hidden lg:flex">
-      <ul className="p-3 xl:p-8 flex flex-col justify-between space-y-8 h-full text-sm xl:text-lg font-aoboshi">
-        <li>Account Dashboard</li>
-        <ExpandableSection
-          title="Appointments"
-          expanded={expandAppointments}
-          onExpand={handleExpandAppointments}
-          items={["Upcoming Appointments", "Previous Appointments"]}
-        />
-        <ExpandableSection
-          title="My Personal Guides"
-          expanded={expandGuides}
-          onExpand={handleExpandGuides}
-          items={["Guide 1", "Guide 2"]}
-        />
-        <ExpandableSection
-          title="Personal Info"
-          expanded={expandInfo}
-          onExpand={handleExpandInfo}
-          items={["Info 1", "Info 2"]}
-        />
-        <ExpandableSection
-          title={<> My Home<FaHome className="ml-2" /></>}
-          expanded={expandHome}
-          onExpand={handleExpandHome}
-          items={["Home 1", "Home 2"]}
-        />
-      </ul>
+    <div className="w-full col-span-2 flex flex-col h-full">
+      {/* Hamburger Menu for Mobile */}
+      <div className="lg:hidden">
+        <Button onClick={() => setDrawerOpen(true)}>
+          <Menu />
+          <span className="pl-2">CLICK FOR ACCOUNT NAVIGATION</span> {/* Add this line */}
+        </Button>
+      </div>
+
+      {/* Drawer for Mobile */}
+      <Drawer
+        anchor="left"
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        PaperProps={{ style: { width: '100%', maxWidth: '400px', overflow: 'hidden' } }}
+      >
+        <div className="w-full bg-gray-100 border border-gray-200 shadow-md rounded-lg flex flex-col col-span-2 min-h-full py-8 overflow-y-auto">
+          {/* Close Button */}
+          <Button onClick={() => setDrawerOpen(false)} className="absolute top-2 right-2">
+            <HiX size={24} />
+          </Button>
+
+          <ul className="p-3 xl:p-8 flex flex-col justify-evenly h-full text-sm xl:text-lg font-aoboshi" style={{flexGrow: 1}}>
+            <li>Account Dashboard</li>
+            <ExpandableSection
+              title="Appointments"
+              expanded={expandAppointments}
+              onExpand={handleExpandAppointments}
+              items={["Upcoming Appointments", "Previous Appointments"]}
+            />
+            <ExpandableSection
+              title="My Personal Guides"
+              expanded={expandGuides}
+              onExpand={handleExpandGuides}
+              items={["Guide 1", "Guide 2"]}
+            />
+            <ExpandableSection
+              title="Personal Info"
+              expanded={expandInfo}
+              onExpand={handleExpandInfo}
+              items={["Info 1", "Info 2"]}
+            />
+            <ExpandableSection
+              title={<> My Home<FaHome className="ml-2" /></>}
+              expanded={expandHome}
+              onExpand={handleExpandHome}
+              items={["Home 1", "Home 2"]}
+            />
+          </ul>
+        </div>
+      </Drawer>
+
+      {/* Original Component for Larger Screens */}
+      <div className="hidden lg:flex w-full bg-gray-100 border border-gray-200 shadow-md rounded-lg flex flex-col min-h-full">
+        <ul className="p-3 xl:p-8 flex flex-col justify-between space-y-8 h-full text-sm xl:text-lg font-aoboshi">
+          <li>Account Dashboard</li>
+          <ExpandableSection
+            title="Appointments"
+            expanded={expandAppointments}
+            onExpand={handleExpandAppointments}
+            items={["Upcoming Appointments", "Previous Appointments"]}
+          />
+          <ExpandableSection
+            title="My Personal Guides"
+            expanded={expandGuides}
+            onExpand={handleExpandGuides}
+            items={["Guide 1", "Guide 2"]}
+          />
+          <ExpandableSection
+            title="Personal Info"
+            expanded={expandInfo}
+            onExpand={handleExpandInfo}
+            items={["Info 1", "Info 2"]}
+          />
+          <ExpandableSection
+            title={<> My Home<FaHome className="ml-2" /></>}
+            expanded={expandHome}
+            onExpand={handleExpandHome}
+            items={["Home 1", "Home 2"]}
+          />
+        </ul>
+      </div>
     </div>
   );
 }
