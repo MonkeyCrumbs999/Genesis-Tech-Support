@@ -19,12 +19,12 @@ function AccountNavigation() {
   const handleExpandHome = () => setExpandHome(!expandHome);
 
   return (
-    <div className="w-full col-span-2 flex flex-col h-full">
+    <div className="w-full col-span-5 lg:col-span-2 flex flex-col h-full">
       {/* Hamburger Menu for Mobile */}
-      <div className="lg:hidden">
-        <Button onClick={() => setDrawerOpen(true)}>
+      <div className="lg:hidden w-full flex flex-col col-span-5 items-center">
+        <Button onClick={() => setDrawerOpen(true)} className="flex items-center">
           <Menu />
-          <span className="pl-2">CLICK FOR ACCOUNT NAVIGATION</span> {/* Add this line */}
+          <span className="pl-2">CLICK FOR ACCOUNT NAVIGATION</span>
         </Button>
       </div>
 

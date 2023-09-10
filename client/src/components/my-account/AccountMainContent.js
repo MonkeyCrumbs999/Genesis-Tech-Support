@@ -1,7 +1,5 @@
 import React from "react";
 
-
-
 function AccountMainContent({ user, renderTuneupSection }) {
   return (
     <div className="w-full col-span-5 flex flex-col items-start justify-start sm:items-center">
