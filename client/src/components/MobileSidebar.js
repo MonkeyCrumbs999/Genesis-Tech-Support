@@ -41,9 +41,10 @@ function MobileSidebar({ isOpen, toggleMenu }) {
         sidebarRef.current &&
         !sidebarRef.current.contains(event.target)
       ) {
-        setTimeout(() => toggleMenu(event), 0);
+        toggleMenu(event);  // Remove setTimeout
       }
     }
+    
 
     document.addEventListener("mousedown", handleClickOutside);
 
@@ -61,7 +62,7 @@ function MobileSidebar({ isOpen, toggleMenu }) {
           animate={isOpen ? "open" : "closed"}
           exit="closed"
           variants={sidebar}
-          transition={{ damping: 20, stiffness: 400 }}
+          transition={{ damping: 20, stiffness: 20 }}
           className={`fixed top-0 left-0 bottom-0 w-64 bg-white p-4 overflow-y-auto z-50 border-r-[3px] border-genesis-orange`}
           onClick={(event) => event.stopPropagation()}>
           <button onClick={toggleMenu} className="mb-4 ml-2 text-black">
