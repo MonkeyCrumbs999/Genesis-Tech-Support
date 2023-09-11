@@ -13,24 +13,36 @@ function Services() {
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
             <ServiceCard
-              title="One-On-One Tech Education"
+              title="1-on-1 Education"
               description="Our one-on-one tech education service is tailored to your specific needs. Whether you're a tech beginner or just need to brush up on a few skills, we're here to help. Our personalized approach ensures that you can navigate and utilize your tech devices efficiently and confidently."
+              price="$65"
               link="/services/tech-education"
             />
+            {/* 
             <ServiceCard
               title="TV Mounting & Setup"
               description="From helping you choose the perfect spot for your new smart TV, to expertly mounting it and setting it up with all your devices, we take the stress out of the process. We'll also guide you through its features and make sure you're comfortable using it before we leave."
               link="/services/tv-mounting"
-            />
+            /> */}
             <ServiceCard
-              title="PC & Mac Software Troubleshooting"
-              description="Software issues can be frustrating and time-consuming. Our PC and Mac software troubleshooting service is designed to address issues swiftly, minimizing downtime. Whether it's a stubborn application, a slow system, or a virus, we've got the solutions."
-              link="/services/software-troubleshooting"
+              title="PC & Mac Setup"
+              description="Get your PC or Mac up and running smoothly with our expert setup service. We'll ensure that your system is optimized for peak performance, install essential software, and configure it to meet your specific needs. Say goodbye to setup hassles and hello to a seamless computing experience."
+              link="/services/pc-mac-setup"
+              price="$100"
             />
+
             <ServiceCard
-              title="In-Home Tech Support"
-              description="Our in-home tech support offers a convenient, hands-off solution to your tech problems. From setting up a new device to troubleshooting an existing one, we provide a comprehensive service right at your doorstep, so you don't have to worry about a thing."
-              link="/services/in-home-support"
+              title="Printer Setup or Troubleshooting"
+              description="Experience hassle-free printing with our expert printer setup and troubleshooting service. Whether you're installing a new printer or dealing with printing issues, we've got you covered. We'll ensure your printer is seamlessly integrated into your network and resolve any printing problems you encounter."
+              link="/services/printer-setup"
+              price="$65"
+            />
+
+            <ServiceCard
+              title="General Troubleshooting"
+              description="Have a tech issue that's not specific to one device? Our general troubleshooting service is here to help. Our experts will diagnose and resolve a wide range of technical problems, from connectivity issues to software glitches, ensuring your devices run smoothly."
+              link="/services/general-troubleshooting"
+              price="$75"
             />
           </div>
         </div>

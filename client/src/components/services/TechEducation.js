@@ -8,7 +8,7 @@ export default function TechEducation() {
   return (
     <Card
       navigateBack={() => navigate(-1)}
-      title="One-On-One Tech Education"
+      title="1-On-1 Education"
       description="Our one-on-one tech education service is tailored to your specific needs. Whether you're a tech beginner or just need to brush up on a few skills..."
     />
   );

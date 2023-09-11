@@ -1,9 +1,8 @@
-// ServiceCard.js
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-export default function ServiceCard({ title, description, link }) {
+export default function ServiceCard({ title, description, price, link }) {
   return (
     <motion.div
       className="flex flex-col h-full border-2 border-gray-200 rounded-lg shadow-lg overflow-hidden"
@@ -18,6 +17,11 @@ export default function ServiceCard({ title, description, link }) {
           transition={{ duration: 0.2 }}>
           {title}
         </motion.h2>
+        {price && (
+          <div className="text-4xl text-center text-green-500 font-semibold mb-2">
+            {price}
+          </div>
+        )}
         <motion.p
           className="text-base text-gray-600"
           initial={{ y: 20 }}

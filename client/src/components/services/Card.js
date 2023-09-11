@@ -1,9 +1,7 @@
-//these are used in the rest of the 'services' components. this is the visual card modularity offered to them
-
 import React from "react";
 import { motion } from "framer-motion";
 
-const Card = ({ navigateBack, title, description }) => (
+const Card = ({ navigateBack, title, description, price }) => (
   <motion.div
     className="flex justify-center items-start min-h-screen py-32 px-4"
     initial={{ opacity: 0, scale: 0.9 }}
@@ -26,6 +24,12 @@ const Card = ({ navigateBack, title, description }) => (
         transition={{ duration: 0.2 }}>
         {title}
       </motion.h2>
+
+      {price && (
+        <div className="text-4xl text-center text-green-500 font-semibold mb-2">
+          {price}
+        </div>
+      )}
 
       <motion.p
         className="text-base text-gray-600"

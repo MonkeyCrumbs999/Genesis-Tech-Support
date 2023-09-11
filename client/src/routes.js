@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import ProtectedRoute from "./ProtectedRoute";
-import ScrollProgressBar from "./components/ScrollProgressBar"; // Import your ScrollProgressBar component
+import ScrollProgressBar from "./components/ScrollProgressBar";
 
 import Home from "./components/Home";
 import Subscription from "./components/Subscription";
@@ -16,30 +16,37 @@ import TVMounting from "./components/services/TVMounting";
 import TechEducation from "./components/services/TechEducation";
 import SoftwareTroubleshooting from "./components/services/SoftwareTroubleshooting";
 import InHomeSupport from "./components/services/InHomeSupport";
-import NotFound from "./components/NotFound"; // Import the NotFound component
+import GeneralTroubleshooting from "./components/services/GeneralTroubleshooting";
+import PCMacSetup from "./components/services/PCMacSetup";
+import PrinterSetup from "./components/services/PrinterSetup"; // Import the PrinterSetup component
+
+import NotFound from "./components/NotFound";
 
 function useConditionalHideScrollbars() {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === '/appointment') {
-      document.body.classList.add('scroll-hide-chrome', 'scroll-hide-firefox');
+    if (location.pathname === "/appointment") {
+      document.body.classList.add("scroll-hide-chrome", "scroll-hide-firefox");
     } else {
-      document.body.classList.remove('scroll-hide-chrome', 'scroll-hide-firefox');
+      document.body.classList.remove(
+        "scroll-hide-chrome",
+        "scroll-hide-firefox"
+      );
     }
   }, [location]);
 }
 
 export default function AppRoutes() {
   const location = useLocation();
-  const shouldDisplayProgressBar = location.pathname !== '/appointment';
+  const shouldDisplayProgressBar = location.pathname !== "/appointment";
 
-  useConditionalHideScrollbars(); // Call the custom hook
+  useConditionalHideScrollbars();
 
   return (
     <>
-      <ScrollProgressBar shouldDisplay={shouldDisplayProgressBar} /> {/* Use the shouldDisplay prop here */}
-      
+      <ScrollProgressBar shouldDisplay={shouldDisplayProgressBar} />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/subscription" element={<Subscription />} />
@@ -60,6 +67,15 @@ export default function AppRoutes() {
           element={<SoftwareTroubleshooting />}
         />
         <Route path="/services/in-home-support" element={<InHomeSupport />} />
+        <Route
+          path="/services/general-troubleshooting"
+          element={<GeneralTroubleshooting />}
+        />
+        <Route path="/services/pc-mac-setup" element={<PCMacSetup />} />
+        <Route
+          path="/services/printer-setup"
+          element={<PrinterSetup />} // Add the PrinterSetup route
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route
@@ -70,8 +86,7 @@ export default function AppRoutes() {
             </ProtectedRoute>
           }
         />
-        
-        {/* Catch-all route for 404 */}
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
